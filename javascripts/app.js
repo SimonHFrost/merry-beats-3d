@@ -20,7 +20,7 @@ function createCube (x, z, color) {
 
 var totalHalfBeats = 64
 
-function createRing (numberOfPositions, width, color) {
+function createRing (numberOfPositions, width, color, soundName) {
   var positions = getPositionsAroundCircle(numberOfPositions, width)
   positions.forEach(function (position) {
     createCube(position[0], position[1], color)
@@ -29,10 +29,14 @@ function createRing (numberOfPositions, width, color) {
   return {
     positions: positions,
     isThereSomethingAtPosition: function isThereSomethingAtPosition (position) {
-    return (((positions.length / totalHalfBeats) * position) % 1) == 0}}
+      return (((positions.length / totalHalfBeats) * position) % 1) == 0},
+    playSound: function playSound () {
+      new Audio('sounds/' + soundName + '.wav').play()
+    }
+  }
 }
 
-var allRings = [createRing(32, 6, 'blue'), createRing(16, 4, 'green'), createRing(8, 2, 'red')]
+var allRings = [createRing(64, 6, 'blue', 'snare'), createRing(32, 4, 'green', 'clap'), createRing(16, 2, 'red', 'kick')]
 
 var count = 0
 setInterval(function () {
@@ -42,6 +46,8 @@ setInterval(function () {
 function checkAllRings (number) {
   console.log("I'm at number " + number)
   allRings.forEach(function (ring) {
-    mouseDown()
+    if (ring.isThereSomethingAtPosition(number)) {
+      ring.playSound()
+    }
   })
 }

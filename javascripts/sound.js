@@ -1,6 +1,5 @@
 /* global Audio */
-document.addEventListener('mousedown', mouseDown, false)
-function mouseDown (event) {
+function playSound (event) {
   var audio = new Audio('sounds/snare.wav')
   audio.play()
 }
