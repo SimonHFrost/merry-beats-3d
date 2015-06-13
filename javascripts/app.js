@@ -15,9 +15,10 @@ function createCube (x, z) {
   mesh.position.z = -OFFSET + z
 
   scene.add(mesh)
+  return mesh
 }
 
-createCube(0, 0)
-createCube(0, 1)
-createCube(1, 0)
-createCube(1, 1)
+var positions = getPositionsAroundCircle(100, 10)
+positions.forEach(function (position) {
+  createCube(position[0], position[1])
+})

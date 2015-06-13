@@ -13,7 +13,7 @@ function createRenderer () {
 
 function createCamera (renderer) {
   var camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.01, 1000)
-  camera.position.y = 10
+  camera.position.y = 12
   // NOTE: unused variable must be assigned for the orbit controller to work
   var controls = new THREE.OrbitControls(camera)
 
