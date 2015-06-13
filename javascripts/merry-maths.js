@@ -11,10 +11,7 @@ function getPositionsAroundCircle (numberOfPositions, width) {
     var z = Math.sin(currentDegrees) * width
 
     result.push([x, z])
-    console.log(currentDegrees, x, z)
   }
 
   return result
 }
-
-console.log('2 * PI is ', Math.PI * 2)
