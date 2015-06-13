@@ -3,14 +3,21 @@
 
 var scene = initialize()
 
-function createCube () {
-  var geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5)
+var SIZE = 0.5
+var OFFSET = 0.5
+function createCube (x, z) {
+  var geometry = new THREE.BoxGeometry(SIZE, SIZE, SIZE)
   var material = new THREE.MeshNormalMaterial()
   var mesh = new THREE.Mesh(geometry, material)
-  mesh.rotation.x = 45 * (Math.PI / 180)
-  mesh.rotation.y = 45 * (Math.PI / 180)
-  return mesh
+
+  mesh.position.x = -OFFSET + x
+  mesh.position.y = 0
+  mesh.position.z = -OFFSET + z
+
+  scene.add(mesh)
 }
 
-var cube = createCube()
-scene.add(cube)
+createCube(0, 0)
+createCube(0, 1)
+createCube(1, 0)
+createCube(1, 1)
