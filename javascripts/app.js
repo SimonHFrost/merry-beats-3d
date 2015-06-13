@@ -1,5 +1,4 @@
 /* global THREE */
-/* global Audio */
 /* global initialize */
 
 var scene = initialize()
@@ -22,9 +21,3 @@ createCube(0, 0)
 createCube(0, 1)
 createCube(1, 0)
 createCube(1, 1)
-
-document.addEventListener('mousedown', mouseDown, false)
-function mouseDown (event) {
-  var audio = new Audio('sounds/snare.wav')
-  audio.play()
-}
