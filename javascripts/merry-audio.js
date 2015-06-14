@@ -1,23 +1,26 @@
-var STEP_DURATION = 250
+var merryAudio = {
+  STEP_DURATION: 250,
 
-function checkAllRings (rings, number) {
-  console.log("I'm at number " + number)
-  rings.forEach(function (ring) {
-    if (ring.isThereSomethingAtPosition(number)) {
-      ring.sound.play()
-      ring.cubes[number].material = ACTIVE_COLOR
+  checkAllRings: function checkAllRings (rings, number) {
+    console.log("I'm at number " + number)
+    rings.forEach(function (ring) {
+      if (ring.isThereSomethingAtPosition(number)) {
+        ring.sound.play()
+        ring.cubes[number].material = merryColors.ACTIVE_COLOR
 
-      // SO SO HACKY
-      setTimeout(function () {
-        ring.cubes[number].material = INACTIVE_COLOR
-      }, STEP_DURATION)
-    }
-  })
-}
+        // SO SO HACKY
+        setTimeout(function () {
+          ring.cubes[number].material = merryColors.INACTIVE_COLOR
+        }, this.STEP_DURATION)
+      }
+    })
+  },
 
-function watchCollection (rings) {
-  var count = 0
-  setInterval(function () {
-    checkAllRings(rings, count++ % totalHalfBeats)
-  }, STEP_DURATION)
+  watchCollection: function watchCollection (rings) {
+    var me = this
+    var count = 0
+    setInterval(function () {
+      me.checkAllRings(rings, count++ % totalHalfBeats)
+    }, me.STEP_DURATION)
+  }
 }

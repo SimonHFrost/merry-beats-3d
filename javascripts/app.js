@@ -1,9 +1,6 @@
-/* global THREE */
-/* global initialize */
+var scene = merryInitializer.initialize()
 
-var scene = initialize()
-
-createCube(0, 0)
+merryCubeCreator.createCube(0, 0)
 
 var ringConfig = [
   { numberOfPositions: 128, width: 8, soundName: 'closedHihat' },
@@ -21,8 +18,8 @@ ringConfig.forEach(function (ringConfig) {
   }
 
   rings.push(
-    createRing(ringConfig.numberOfPositions, ringConfig.width, ringConfig.soundName)
+    merryCubeCreator.createRingOfCubes(ringConfig.numberOfPositions, ringConfig.width, ringConfig.soundName)
   )
 })
 
-watchCollection(rings)
+merryAudio.watchCollection(rings)
