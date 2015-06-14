@@ -1,6 +1,4 @@
 var SIZE = 0.25
-var INACTIVE_COLOR = new THREE.MeshBasicMaterial({color: 'red'})
-var ACTIVE_COLOR = new THREE.MeshBasicMaterial({color: 'blue'})
 
 function createCube (x, z) {
   var geometry = new THREE.BoxGeometry(SIZE, SIZE, SIZE)
