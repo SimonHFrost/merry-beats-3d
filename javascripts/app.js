@@ -3,6 +3,8 @@
 
 var scene = initialize()
 
+createCube(0, 0, 'black')
+
 var ringConfig = [
   { numberOfPositions: 128, width: 8, color: 'purple', soundName: 'closedHihat' },
   { numberOfPositions: 64, width: 6, color: 'blue', soundName: 'snare' },

@@ -1,14 +1,15 @@
 var SIZE = 0.5
-var OFFSET = 0.5
 
 function createCube (x, z, color) {
   var geometry = new THREE.BoxGeometry(SIZE, SIZE, SIZE)
   var material = new THREE.MeshBasicMaterial({color: color})
   var mesh = new THREE.Mesh(geometry, material)
 
-  mesh.position.x = -OFFSET + x
+  mesh.position.x = x
   mesh.position.y = 0
-  mesh.position.z = -OFFSET + z
+  mesh.position.z = z
+
+  mesh.lookAt(new THREE.Vector3(0, 0, 0))
 
   scene.add(mesh)
   return mesh
@@ -32,8 +33,6 @@ function createRing (numberOfPositions, width, color, soundName) {
     }(),
     isThereSomethingAtPosition: function isThereSomethingAtPosition (position) {
       return this.cubes[position]},
-    playSound: function playSound () {
-      new Audio('sounds/' + soundName + '.wav').play()
-    }
+    sound: new Audio('sounds/' + soundName + '.wav')
   }
 }
