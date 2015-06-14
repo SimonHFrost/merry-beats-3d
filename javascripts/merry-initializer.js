@@ -14,6 +14,7 @@ var merryInitializer = {
   createCamera: function createCamera (renderer) {
     var camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.01, 1000)
     camera.position.y = 12
+    // NOTE: orbit controls must be assigned even though it's not used
     var controls = new THREE.OrbitControls(camera)
 
     window.addEventListener('resize', function () {
@@ -30,10 +31,10 @@ var merryInitializer = {
     requestAnimationFrame(function animate (now) {
       requestAnimationFrame(animate)
       before = before || now - 1000 / 60
-      var deltaMsec = Math.min(200, now - before)
+      var delta = Math.min(200, now - before)
       before = now
       renderLoop.forEach(function (renderLoop) {
-        renderLoop(deltaMsec / 1000, now / 1000)
+        renderLoop(delta / 1000, now / 1000)
       })
     })
     return renderLoop

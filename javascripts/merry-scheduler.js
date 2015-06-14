@@ -1,6 +1,6 @@
 /* global merryColors */
 
-var merryAudio = {
+var merryScheduler = {
   STEP_DURATION: 250,
 
   checkAllRings: function checkAllRings (rings, number) {

@@ -1,6 +1,6 @@
 /* global merryInitializer */
 /* global merryCubeCreator */
-/* global merryAudio */
+/* global merryScheduler */
 
 var scene = merryInitializer.initialize()
 
@@ -26,4 +26,4 @@ ringConfig.forEach(function (ringConfig) {
   )
 })
 
-merryAudio.watchCollection(rings)
+merryScheduler.watchCollection(rings)
