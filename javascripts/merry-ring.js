@@ -1,8 +1,8 @@
 var SIZE = 0.5
 
-function createCube (x, z, color) {
+function createCube (x, z) {
   var geometry = new THREE.BoxGeometry(SIZE, SIZE, SIZE)
-  var material = new THREE.MeshBasicMaterial({color: color})
+  var material = new THREE.MeshBasicMaterial({color: 'white'})
   var mesh = new THREE.Mesh(geometry, material)
 
   mesh.position.x = x
@@ -15,7 +15,7 @@ function createCube (x, z, color) {
   return mesh
 }
 
-function createRing (numberOfPositions, width, color, soundName) {
+function createRing (numberOfPositions, width, soundName) {
   return {
     cubes: function makeCubes () {
       var cubes = []
@@ -25,7 +25,7 @@ function createRing (numberOfPositions, width, color, soundName) {
       for (var i = 0; i < totalHalfBeats; i++) {
         var position = positions[currentPosition]
         if (i % everyX === 0) {
-          cubes[i] = createCube(position[0], position[1], color)
+          cubes[i] = createCube(position[0], position[1])
           currentPosition++
         }
       }

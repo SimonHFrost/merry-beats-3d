@@ -5,7 +5,6 @@ function createRenderer () {
   var renderer = new THREE.WebGLRenderer({
     antialias: true
   })
-  renderer.setClearColor(new THREE.Color('lightgrey'), 1)
   renderer.setSize(window.innerWidth, window.innerHeight)
   document.body.appendChild(renderer.domElement)
   return renderer
