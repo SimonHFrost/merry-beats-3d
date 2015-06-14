@@ -21,16 +21,17 @@ function createCube (x, z, color) {
 var totalHalfBeats = 64
 
 function createRing (numberOfPositions, width, color, soundName) {
-  var positions = getPositionsAroundCircle(numberOfPositions, width)
-  var cubes = []
-  positions.forEach(function (position) {
-    cubes.push(createCube(position[0], position[1], color))
-  })
-
   return {
-    cubes: cubes,
+    cubes: function makeCubes () {
+      var cubes = []
+      var positions = getPositionsAroundCircle(numberOfPositions, width)
+      positions.forEach(function (position) {
+        cubes.push(createCube(position[0], position[1], color))
+      })
+      return cubes
+    }(),
     isThereSomethingAtPosition: function isThereSomethingAtPosition (position) {
-      return (((positions.length / totalHalfBeats) * position) % 1) == 0},
+      return (((numberOfPositions / totalHalfBeats) * position) % 1) == 0},
     playSound: function playSound () {
       new Audio('sounds/' + soundName + '.wav').play()
     }
