@@ -38,9 +38,19 @@ function createRing (numberOfPositions, width, color, soundName) {
   }
 }
 
-var allRings = [createRing(128, 8, 'purple', 'closedHihat'), createRing(64, 6, 'blue', 'snare'), createRing(32, 4, 'green', 'clap'), createRing(16, 2, 'red', 'kick')]
+var ringConfig = [
+  { numberOfPositions: 128, width: 8, color: 'purple', soundName: 'closedHihat' },
+  { numberOfPositions: 64, width: 6, color: 'blue', soundName: 'snare' },
+  { numberOfPositions: 32, width: 4, color: 'green', soundName: 'clap' },
+  { numberOfPositions: 16, width: 2, color: 'red', soundName: 'kick' }
+]
 
-var count = 0
+var allRings = []
+ringConfig.forEach(function (ringConfig) {
+  allRings.push(createRing(ringConfig.numberOfPositions, ringConfig.width, ringConfig.color, ringConfig.soundName))
+})
+
+var count = 0 % totalHalfBeats
 setInterval(function () {
   checkAllRings(count++)
 }, 250)
