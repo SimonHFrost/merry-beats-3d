@@ -3,7 +3,7 @@ function checkAllRings (rings, number) {
   rings.forEach(function (ring) {
     if (ring.isThereSomethingAtPosition(number)) {
       ring.sound.play()
-      ring.cubes[number].material.color = 'black'
+      ring.cubes[number].material = ACTIVE_COLOR
     }
   })
 }
