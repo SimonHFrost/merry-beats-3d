@@ -3,6 +3,7 @@ var merryAudio = {
 
   checkAllRings: function checkAllRings (rings, number) {
     console.log("I'm at number " + number)
+
     rings.forEach(function (ring) {
       if (ring.isThereSomethingAtPosition(number)) {
         ring.sound.play()
@@ -11,7 +12,7 @@ var merryAudio = {
         // SO SO HACKY
         setTimeout(function () {
           ring.cubes[number].material = merryColors.INACTIVE_COLOR
-        }, this.STEP_DURATION)
+        }, 250) // It doesn't like using the STEP_DURATION on the module for some reason
       }
     })
   },
