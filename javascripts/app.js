@@ -5,8 +5,6 @@
 
 var scene = merryInitializer.initialize()
 
-merryCubeCreator.createCube(0, 0)
-
 var ringConfig = [
   { numberOfPositions: 128, width: 8, soundName: 'closedHihat' },
   { numberOfPositions: 64, width: 6, soundName: 'snare' },

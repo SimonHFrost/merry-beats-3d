@@ -13,6 +13,7 @@ var merryClickHandler = {
 
     for (var i = 0; i < intersects.length; i++) {
       intersects[ i ].object.material = new THREE.MeshBasicMaterial({color: 'green'})
+      intersects[ i ].object.playClip = true
     }
 
     console.log(intersects)
