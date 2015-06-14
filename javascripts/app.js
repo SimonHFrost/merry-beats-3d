@@ -10,6 +10,13 @@ var ringConfig = [
   { numberOfPositions: 16, width: 2, color: 'red', soundName: 'kick' }
 ]
 
+var rings = []
+var totalHalfBeats = 128
+
 ringConfig.forEach(function (ringConfig) {
-  allRings.push(createRing(ringConfig.numberOfPositions, ringConfig.width, ringConfig.color, ringConfig.soundName))
+  rings.push(
+    createRing(ringConfig.numberOfPositions, ringConfig.width, ringConfig.color, ringConfig.soundName)
+  )
 })
+
+watchCollection(rings)

@@ -1,7 +1,6 @@
-var totalHalfBeats = 128
-
 var SIZE = 0.5
 var OFFSET = 0.5
+
 function createCube (x, z, color) {
   var geometry = new THREE.BoxGeometry(SIZE, SIZE, SIZE)
   var material = new THREE.MeshBasicMaterial({color: color})
@@ -20,13 +19,19 @@ function createRing (numberOfPositions, width, color, soundName) {
     cubes: function makeCubes () {
       var cubes = []
       var positions = getPositionsAroundCircle(numberOfPositions, width)
-      positions.forEach(function (position) {
-        cubes.push(createCube(position[0], position[1], color))
-      })
+      var currentPosition = 0
+      var everyX = Math.floor(totalHalfBeats / numberOfPositions)
+      for (var i = 0; i < totalHalfBeats; i++) {
+        var position = positions[currentPosition]
+        if (i % everyX === 0) {
+          cubes[i] = createCube(position[0], position[1], color)
+          currentPosition++
+        }
+      }
       return cubes
     }(),
     isThereSomethingAtPosition: function isThereSomethingAtPosition (position) {
-      return (((numberOfPositions / totalHalfBeats) * position) % 1) == 0},
+      return this.cubes[position]},
     playSound: function playSound () {
       new Audio('sounds/' + soundName + '.wav').play()
     }
