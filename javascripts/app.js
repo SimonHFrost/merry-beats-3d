@@ -22,12 +22,14 @@ var totalHalfBeats = 64
 
 function createRing (numberOfPositions, width, color, soundName) {
   var positions = getPositionsAroundCircle(numberOfPositions, width)
+  var cubes = []
   positions.forEach(function (position) {
-    createCube(position[0], position[1], color)
+    cubes.push(createCube(position[0], position[1], color))
   })
 
   return {
     positions: positions,
+    cubes: cubes,
     isThereSomethingAtPosition: function isThereSomethingAtPosition (position) {
       return (((positions.length / totalHalfBeats) * position) % 1) == 0},
     playSound: function playSound () {
@@ -48,6 +50,7 @@ function checkAllRings (number) {
   allRings.forEach(function (ring) {
     if (ring.isThereSomethingAtPosition(number)) {
       ring.playSound()
+      ring.cubes[Math.floor(number * ring.cubes.length / totalHalfBeats)].material.color = 'black'
     }
   })
 }
