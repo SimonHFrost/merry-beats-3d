@@ -1,6 +1,7 @@
 /* global merryInitializer */
 /* global merryCubeCreator */
 /* global merryScheduler */
+/* global merryClickHandler */
 
 var scene = merryInitializer.initialize()
 
@@ -27,3 +28,4 @@ ringConfig.forEach(function (ringConfig) {
 })
 
 merryScheduler.watchCollection(rings)
+merryClickHandler.watchClicks(scene)

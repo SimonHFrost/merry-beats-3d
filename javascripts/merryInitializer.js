@@ -42,7 +42,6 @@ var merryInitializer = {
 
   initialize: function initialize () {
     var scene
-    var camera
     var renderer
     var renderLoop
 
@@ -50,7 +49,7 @@ var merryInitializer = {
     renderLoop = this.createRenderLoop()
 
     scene = new THREE.Scene()
-    camera = this.createCamera(renderer)
+    camera = this.createCamera(renderer) // this needs a var
 
     renderLoop.push(function () {
       renderer.render(scene, camera)
