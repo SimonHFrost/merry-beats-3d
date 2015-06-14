@@ -18,7 +18,7 @@ function createCube (x, z, color) {
   return mesh
 }
 
-var totalHalfBeats = 64
+var totalHalfBeats = 128
 
 function createRing (numberOfPositions, width, color, soundName) {
   return {
@@ -38,12 +38,12 @@ function createRing (numberOfPositions, width, color, soundName) {
   }
 }
 
-var allRings = [createRing(64, 6, 'blue', 'snare'), createRing(32, 4, 'green', 'clap'), createRing(16, 2, 'red', 'kick')]
+var allRings = [createRing(128, 8, 'purple', 'closedHihat'), createRing(64, 6, 'blue', 'snare'), createRing(32, 4, 'green', 'clap'), createRing(16, 2, 'red', 'kick')]
 
 var count = 0
 setInterval(function () {
   checkAllRings(count++)
-}, 1000)
+}, 250)
 
 function checkAllRings (number) {
   console.log("I'm at number " + number)
