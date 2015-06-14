@@ -28,7 +28,6 @@ function createRing (numberOfPositions, width, color, soundName) {
   })
 
   return {
-    positions: positions,
     cubes: cubes,
     isThereSomethingAtPosition: function isThereSomethingAtPosition (position) {
       return (((positions.length / totalHalfBeats) * position) % 1) == 0},
