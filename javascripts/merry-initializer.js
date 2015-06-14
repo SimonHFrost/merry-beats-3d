@@ -1,3 +1,6 @@
+/* global THREE */
+/* global requestAnimationFrame */
+
 var merryInitializer = {
   createRenderer: function createRenderer () {
     var renderer = new THREE.WebGLRenderer({

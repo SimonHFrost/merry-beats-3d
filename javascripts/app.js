@@ -1,3 +1,7 @@
+/* global merryInitializer */
+/* global merryCubeCreator */
+/* global merryAudio */
+
 var scene = merryInitializer.initialize()
 
 merryCubeCreator.createCube(0, 0)
@@ -18,7 +22,7 @@ ringConfig.forEach(function (ringConfig) {
   }
 
   rings.push(
-    merryCubeCreator.createRingOfCubes(ringConfig.numberOfPositions, ringConfig.width, ringConfig.soundName)
+    merryCubeCreator.createRingOfCubes(totalHalfBeats, ringConfig.numberOfPositions, ringConfig.width, ringConfig.soundName)
   )
 })
 

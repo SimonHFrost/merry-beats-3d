@@ -1,3 +1,5 @@
+/* global merryColors */
+
 var merryAudio = {
   STEP_DURATION: 250,
 
@@ -21,7 +23,7 @@ var merryAudio = {
     var me = this
     var count = 0
     setInterval(function () {
-      me.checkAllRings(rings, count++ % totalHalfBeats)
+      me.checkAllRings(rings, count++)
     }, me.STEP_DURATION)
   }
 }
