@@ -1,7 +1,7 @@
 /* global merryColors */
 
 var merryScheduler = {
-  STEP_DURATION: 50,
+  STEP_DURATION: 250,
 
   checkAllRings: function checkAllRings (rings, number) {
     console.log("I'm at number " + number)
@@ -17,7 +17,7 @@ var merryScheduler = {
         // SO SO HACKY
         setTimeout(function () {
           ring.cubes[number].material = previousMaterial
-        }, 50) // It doesn't like using the STEP_DURATION on the module for some reason
+        }, 250) // It doesn't like using the STEP_DURATION on the module for some reason
       }
     })
   },
