@@ -26,7 +26,7 @@ var merryScheduler = {
     var me = this
     var count = 0
     setInterval(function () {
-      me.checkAllRings(rings, count++)
+      me.checkAllRings(rings, count++ % totalHalfBeats)
     }, me.STEP_DURATION)
   }
 }
