@@ -40,6 +40,17 @@ var merryInitializer = {
     return renderLoop
   },
 
+  createLights: function createLights (scene) {
+    var ambientLight = new THREE.AmbientLight(0x777777)
+    scene.add(ambientLight)
+
+    var directionalLight = new THREE.DirectionalLight(0xffffff)
+    directionalLight.position.set(1, 1, 1).normalize()
+    scene.add(directionalLight)
+
+    return scene
+  },
+
   initialize: function initialize () {
     var scene
     var renderer
@@ -54,6 +65,8 @@ var merryInitializer = {
     renderLoop.push(function () {
       renderer.render(scene, camera)
     })
+
+    scene = this.createLights(scene)
 
     return scene
   }
