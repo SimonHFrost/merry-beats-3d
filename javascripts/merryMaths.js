@@ -1,4 +1,4 @@
-var merryMaths = {
+var MerryMaths = {
   getPositionsAroundCircle: function getPositionsAroundCircle (numberOfPositions, width) {
     var circle = Math.PI * 2
 

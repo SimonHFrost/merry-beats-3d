@@ -1,6 +1,6 @@
-/* global merryColors */
+/* global MerryColors */
 
-var merryScheduler = {
+var MerryScheduler = {
   STEP_DURATION: 250,
 
   checkAllRings: function checkAllRings (rings, number) {
@@ -12,7 +12,7 @@ var merryScheduler = {
         if (ring.cubes[number].playClip) {
           ring.sound.play()
         }
-        ring.cubes[number].material = merryColors.ACTIVE_COLOR
+        ring.cubes[number].material = MerryColors.ACTIVE_COLOR
 
         // SO SO HACKY
         setTimeout(function () {

@@ -1,7 +1,7 @@
 /* global THREE */
-/* global merryColors */
+/* global MerryColors */
 
-var merryClickHandler = {
+var MerryClickHandler = {
   scene: '',
   camera: '',
   onClick: function onClick (e) {
@@ -12,13 +12,13 @@ var merryClickHandler = {
     raycaster.setFromCamera(mouse, this.camera)
     var intersects = raycaster.intersectObjects(this.scene.children)
     for (var i = 0; i < intersects.length; i++) {
-      intersects[ i ].object.material = merryColors.ACTIVE_COLOR
+      intersects[ i ].object.material = MerryColors.ACTIVE_COLOR
       intersects[ i ].object.playClip = true
     }
   },
-  watchClicks: function watchClicks () {
+  watchClicks: function watchClicks (scene, camera) {
     this.scene = scene
-    this.camer = camera
+    this.camera = camera
     window.addEventListener('click', this.onClick)
   }
 }

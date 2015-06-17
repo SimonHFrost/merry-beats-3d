@@ -1,9 +1,9 @@
-/* global merryInitializer */
-/* global merryCubeCreator */
-/* global merryScheduler */
-/* global merryClickHandler */
+/* global MerryInitializer */
+/* global MerryCubeCreator */
+/* global MerryScheduler */
+/* global MerryClickHandler */
 
-var collection = merryInitializer.initialize()
+var collection = MerryInitializer.initialize()
 var scene = collection['scene']
 var camera = collection['camera']
 
@@ -23,7 +23,7 @@ ringConfig.forEach(function (ringConfig) {
   }
 
   rings.push(
-    merryCubeCreator.createRingOfCubes(
+    MerryCubeCreator.createRingOfCubes(
       totalHalfBeats,
       ringConfig.numberOfPositions,
       ringConfig.width,
@@ -31,5 +31,5 @@ ringConfig.forEach(function (ringConfig) {
   )
 })
 
-merryScheduler.watchCollection(rings)
-merryClickHandler.watchClicks(scene, camera)
+MerryScheduler.watchCollection(rings)
+MerryClickHandler.watchClicks(scene, camera)

@@ -1,13 +1,13 @@
 /* global Audio */
 /* global THREE */
-/* global merryColors */
-/* global merryMaths */
+/* global MerryColors */
+/* global MerryMaths */
 
-var merryCubeCreator = {
+var MerryCubeCreator = {
   SIZE: 0.25,
   createCube: function createCube (x, z) {
     var geometry = new THREE.BoxGeometry(this.SIZE, this.SIZE, this.SIZE)
-    var material = merryColors.INACTIVE_COLOR
+    var material = MerryColors.INACTIVE_COLOR
     var mesh = new THREE.Mesh(geometry, material)
 
     mesh.position.x = x
@@ -25,7 +25,7 @@ var merryCubeCreator = {
     return {
       cubes: (function makeCubes () {
         var cubes = []
-        var positions = merryMaths.getPositionsAroundCircle(numberOfPositions, width)
+        var positions = MerryMaths.getPositionsAroundCircle(numberOfPositions, width)
         var currentPosition = 0
         var everyX = Math.floor(totalHalfBeats / numberOfPositions)
         for (var i = 0; i < totalHalfBeats; i++) {
