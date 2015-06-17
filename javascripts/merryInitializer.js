@@ -60,7 +60,7 @@ var merryInitializer = {
     renderLoop = this.createRenderLoop()
 
     scene = new THREE.Scene()
-    camera = this.createCamera(renderer) // this needs a var
+    var camera = this.createCamera(renderer)
 
     renderLoop.push(function () {
       renderer.render(scene, camera)
@@ -68,6 +68,9 @@ var merryInitializer = {
 
     scene = this.createLights(scene)
 
-    return scene
+    return {
+      camera: camera,
+      scene: scene
+    }
   }
 }

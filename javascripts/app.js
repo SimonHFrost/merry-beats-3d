@@ -3,7 +3,9 @@
 /* global merryScheduler */
 /* global merryClickHandler */
 
-var scene = merryInitializer.initialize()
+var collection = merryInitializer.initialize()
+var scene = collection['scene']
+var camera = collection['camera']
 
 var ringConfig = [
   { numberOfPositions: 128, width: 8, soundName: 'closedHihat' },
@@ -21,9 +23,13 @@ ringConfig.forEach(function (ringConfig) {
   }
 
   rings.push(
-    merryCubeCreator.createRingOfCubes(totalHalfBeats, ringConfig.numberOfPositions, ringConfig.width, ringConfig.soundName)
+    merryCubeCreator.createRingOfCubes(
+      totalHalfBeats,
+      ringConfig.numberOfPositions,
+      ringConfig.width,
+      ringConfig.soundName)
   )
 })
 
 merryScheduler.watchCollection(rings)
-merryClickHandler.watchClicks(scene)
+merryClickHandler.watchClicks(scene, camera)
