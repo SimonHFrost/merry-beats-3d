@@ -4,6 +4,7 @@
 /* global MerryMaths */
 
 var MerryCubeCreator = {
+  scene: '',
   SIZE: 0.25,
   createCube: function createCube (x, z) {
     var geometry = new THREE.BoxGeometry(this.SIZE, this.SIZE, this.SIZE)
@@ -16,12 +17,13 @@ var MerryCubeCreator = {
 
     mesh.lookAt(new THREE.Vector3(0, 0, 0))
 
-    scene.add(mesh)
+    this.scene.add(mesh)
     return mesh
   },
 
-  createRingOfCubes: function createRingOfCubes (totalHalfBeats, numberOfPositions, width, soundName) {
+  createRingOfCubes: function createRingOfCubes (scene, totalHalfBeats, numberOfPositions, width, soundName) {
     var me = this
+    this.scene = scene
     return {
       cubes: (function makeCubes () {
         var cubes = []

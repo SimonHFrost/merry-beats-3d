@@ -24,6 +24,7 @@ ringConfig.forEach(function (ringConfig) {
 
   rings.push(
     MerryCubeCreator.createRingOfCubes(
+      scene,
       totalHalfBeats,
       ringConfig.numberOfPositions,
       ringConfig.width,
