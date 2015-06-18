@@ -1,0 +1,13 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+button {
+  margin: 10px;
+  background-color: blue;
+}
+
+#buttons {
+  margin-bottom: 20px;
+}

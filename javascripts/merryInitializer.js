@@ -2,26 +2,24 @@
 /* global requestAnimationFrame */
 
 var MerryInitializer = {
+  height: 600,
+  width: 800,
+
   createRenderer: function createRenderer () {
     var renderer = new THREE.WebGLRenderer({
       antialias: true
     })
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    document.body.appendChild(renderer.domElement)
+    renderer.setSize(this.width, this.height)
+    document.getElementById('renderer').appendChild(renderer.domElement)
     return renderer
   },
 
   createCamera: function createCamera (renderer) {
-    var camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.01, 1000)
+    var camera = new THREE.PerspectiveCamera(90, this.width / this.height, 0.01, 1000)
     camera.position.y = 12
+    // camera.lookAt(new THREE.Vector3(0, 0, 0))
     // NOTE: orbit controls must be assigned even though it's not used
     var controls = new THREE.OrbitControls(camera)
-
-    window.addEventListener('resize', function () {
-      renderer.setSize(window.innerWidth, window.innerHeight)
-      camera.aspect = window.innerWidth / window.innerHeight
-      camera.updateProjectionMatrix()
-    }, false)
     return camera
   },
 

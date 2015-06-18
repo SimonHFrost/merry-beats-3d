@@ -4,8 +4,6 @@ var MerryScheduler = {
   STEP_DURATION: 250,
 
   checkAllRings: function checkAllRings (rings, number) {
-    console.log("I'm at number " + number)
-
     rings.forEach(function (ring) {
       if (ring.isThereSomethingAtPosition(number)) {
         var previousMaterial = ring.cubes[number].material
