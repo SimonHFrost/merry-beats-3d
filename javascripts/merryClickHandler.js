@@ -5,8 +5,8 @@ var MerryClickHandler = {
   scene: '',
   camera: '',
   onClick: function onClick (e) {
-    var x = (e.clientX / 600) * 2 - 1
-    var y = -(e.clientY / 800) * 2 + 1
+    var x = (e.clientX / 800) * 2 - 1
+    var y = -(e.clientY / 600) * 2 + 1
     var mouse = new THREE.Vector2(x, y)
     var raycaster = new THREE.Raycaster()
     raycaster.setFromCamera(mouse, this.camera)

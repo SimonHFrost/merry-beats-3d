@@ -1,6 +1,12 @@
 body {
+  width: 800px;
+  margin: 0px;
   background-color: black;
   color: white;
+}
+
+#buttons {
+  margin-bottom: 20px;
 }
 
 button {
@@ -8,6 +14,6 @@ button {
   background-color: blue;
 }
 
-#buttons {
-  margin-bottom: 20px;
+#details {
+  text-align: center;
 }
