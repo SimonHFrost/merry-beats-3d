@@ -2,13 +2,11 @@
 /* global MerryColors */
 
 var MerryClickHandler = {
-  height: 600,
-  width: 800,
   scene: '',
   camera: '',
   onClick: function onClick (e) {
-    var x = (e.clientX / this.width) * 2 - 1
-    var y = -(e.clientY / this.height) * 2 + 1
+    var x = (e.clientX / 600) * 2 - 1
+    var y = -(e.clientY / 800) * 2 + 1
     var mouse = new THREE.Vector2(x, y)
     var raycaster = new THREE.Raycaster()
     raycaster.setFromCamera(mouse, this.camera)
