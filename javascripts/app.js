@@ -1,3 +1,4 @@
+/* global THREE */
 /* global MerryInitializer */
 /* global MerryCubeCreator */
 /* global MerryScheduler */
@@ -7,11 +8,19 @@ var collection = MerryInitializer.initialize()
 var scene = collection['scene']
 var camera = collection['camera']
 
+var cube = function () {
+  return new THREE.BoxGeometry(0.25, 0.25, 0.25)
+}
+
+var rectangle = function () {
+  return new THREE.BoxGeometry(0.25, 0.25, 0.75)
+}
+
 var ringConfig = [
-  { numberOfPositions: 128, width: 8, soundName: 'closedHihat' },
-  { numberOfPositions: 64, width: 6, soundName: 'snare' },
-  { numberOfPositions: 32, width: 4, soundName: 'clap' },
-  { numberOfPositions: 16, width: 2, soundName: 'kick' }
+  { numberOfPositions: 128, width: 8, soundName: 'closedHihat', createFunction: rectangle },
+  { numberOfPositions: 64, width: 6, soundName: 'snare', createFunction: cube },
+  { numberOfPositions: 32, width: 4, soundName: 'clap', createFunction: rectangle },
+  { numberOfPositions: 16, width: 2, soundName: 'kick', createFunction: cube }
 ]
 
 var rings = []
@@ -28,7 +37,8 @@ ringConfig.forEach(function (ringConfig) {
       totalHalfBeats,
       ringConfig.numberOfPositions,
       ringConfig.width,
-      ringConfig.soundName)
+      ringConfig.soundName,
+      ringConfig.createFunction)
   )
 })
 
