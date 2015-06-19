@@ -6,6 +6,7 @@
 var MerryCubeCreator = {
   scene: '',
   SIZE: 0.25,
+
   createCube: function createCube (x, z) {
     var geometry = new THREE.BoxGeometry(this.SIZE, this.SIZE, this.SIZE)
     var material = MerryColors.INACTIVE_COLOR

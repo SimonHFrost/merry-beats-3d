@@ -4,9 +4,10 @@
 var MerryClickHandler = {
   scene: '',
   camera: '',
+
   onClick: function onClick (e) {
-    var x = (e.clientX / 800) * 2 - 1
-    var y = -(e.clientY / 600) * 2 + 1
+    var x = (e.clientX / MerryInitializer.width) * 2 - 1
+    var y = -(e.clientY / MerryInitializer.height) * 2 + 1
     var mouse = new THREE.Vector2(x, y)
     var raycaster = new THREE.Raycaster()
     raycaster.setFromCamera(mouse, this.camera)
@@ -16,6 +17,7 @@ var MerryClickHandler = {
       intersects[ i ].object.playClip = true
     }
   },
+
   watchClicks: function watchClicks (scene, camera) {
     this.scene = scene
     this.camera = camera
