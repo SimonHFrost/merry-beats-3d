@@ -13,8 +13,14 @@ var MerryClickHandler = {
     raycaster.setFromCamera(mouse, this.camera)
     var intersects = raycaster.intersectObjects(this.scene.children)
     for (var i = 0; i < intersects.length; i++) {
-      intersects[ i ].object.material = MerryColors.ACTIVE_COLOR
-      intersects[ i ].object.playClip = true
+      var cube = intersects[i].object
+      if (cube.playClip) {
+        cube.material = MerryColors.INACTIVE_COLOR
+        cube.playClip = false
+      } else {
+        cube.material = MerryColors.ACTIVE_COLOR
+        cube.playClip = true
+      }
     }
   },
 

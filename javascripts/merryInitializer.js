@@ -18,9 +18,10 @@ var MerryInitializer = {
   createCamera: function createCamera (renderer) {
     var camera = new THREE.PerspectiveCamera(90, this.width / this.height, 0.01, 1000)
     camera.position.y = 12
-    // camera.lookAt(new THREE.Vector3(0, 0, 0))
-    // NOTE: orbit controls must be assigned even though it's not used
     var controls = new THREE.OrbitControls(camera)
+    controls.noZoom = true
+    controls.noPan = true
+    controls.maxPolarAngle = Math.PI / 2.2
     return camera
   },
 
@@ -43,7 +44,7 @@ var MerryInitializer = {
     var ambientLight = new THREE.AmbientLight(0xAAAAAA)
     scene.add(ambientLight)
 
-    var directionalLight = new THREE.DirectionalLight(0xffffff)
+    var directionalLight = new THREE.DirectionalLight(0x999999)
     directionalLight.position.set(1, 1, 1).normalize()
     scene.add(directionalLight)
 
