@@ -18,7 +18,7 @@ var MerryInitializer = {
   createCamera: function createCamera (renderer) {
     var camera = new THREE.PerspectiveCamera(90, this.width / this.height, 0.01, 1000)
     camera.position.y = 12
-    var controls = new THREE.OrbitControls(camera)
+    var controls = new THREE.OrbitControls(camera, document.getElementById('renderer'))
     controls.noZoom = true
     controls.noPan = true
     controls.maxPolarAngle = Math.PI / 2.2

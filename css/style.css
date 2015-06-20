@@ -3,6 +3,7 @@ body {
   margin: 0px;
   background-color: black;
   color: white;
+  font: 500 1em/1.5 "futura-pt", "Century Gothic", "Futura", sans-serif;
 }
 
 #buttons {
@@ -15,4 +16,8 @@ button {
 
 #details {
   text-align: center;
+}
+
+#info {
+  font-size: 16px;
 }

@@ -2,11 +2,11 @@
 /* global Please */
 
 var randomColor = Please.make_color({value: '0.95'})[0]
-var scheme = Please.make_scheme(Please.HEX_to_HSV(randomColor), { scheme_type: 'triadic' })
+var scheme = Please.make_scheme(Please.HEX_to_HSV(randomColor), { scheme_type: 'complementary' })
 
 var first = scheme[0]
-var second = scheme[1]
-var third = scheme[2]
+var second = 'white'
+var third = scheme[1]
 
 document.body.style.backgroundColor = third
 
