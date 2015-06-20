@@ -6,9 +6,10 @@ var MerryInitializer = {
   width: 800,
 
   createRenderer: function createRenderer () {
-    var renderer = new THREE.WebGLRenderer({
+    renderer = new THREE.WebGLRenderer({
       antialias: true
     })
+    renderer.setClearColor(third)
     renderer.setSize(this.width, this.height)
     document.getElementById('renderer').appendChild(renderer.domElement)
     return renderer
@@ -39,7 +40,7 @@ var MerryInitializer = {
   },
 
   createLights: function createLights (scene) {
-    var ambientLight = new THREE.AmbientLight(0x777777)
+    var ambientLight = new THREE.AmbientLight(0xAAAAAA)
     scene.add(ambientLight)
 
     var directionalLight = new THREE.DirectionalLight(0xffffff)
@@ -51,10 +52,10 @@ var MerryInitializer = {
 
   initialize: function initialize () {
     var scene
-    var renderer
+    renderer
     var renderLoop
 
-    renderer = this.createRenderer()
+    var renderer = this.createRenderer({alpha: true})
     renderLoop = this.createRenderLoop()
 
     scene = new THREE.Scene()
