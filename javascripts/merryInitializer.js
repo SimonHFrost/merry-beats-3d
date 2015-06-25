@@ -9,7 +9,7 @@ var MerryInitializer = {
     renderer = new THREE.WebGLRenderer({
       antialias: true
     })
-    renderer.setClearColor(third)
+    renderer.setClearColor(secondaryColor)
     renderer.setSize(this.width, this.height)
     document.getElementById('renderer').appendChild(renderer.domElement)
     return renderer

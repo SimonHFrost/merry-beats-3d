@@ -1,26 +1,36 @@
 /* global THREE */
 /* global Please */
 
-var randomColor = Please.make_color({value: '0.95'})[0]
-var scheme = Please.make_scheme(Please.HEX_to_HSV(randomColor), { scheme_type: 'complementary' })
+function generateColorScheme () {
+  var randomColor = Please.make_color({value: '0.95'})[0]
+  var scheme = Please.make_scheme(Please.HEX_to_HSV(randomColor), { scheme_type: 'complementary' })
 
-var first = scheme[0]
-var second = 'white'
-var third = scheme[1]
+  primaryColor = scheme[0]
+  secondaryColor = scheme[1]
+  highlightColor = 'white'
+}
 
-document.body.style.backgroundColor = third
+function setHtmlColors () {
+  document.body.style.color = primaryColor
+  document.body.style.backgroundColor = secondaryColor
+}
 
-document.getElementsByTagName('button')[0].style.backgroundColor = first
-document.getElementsByTagName('button')[0].style.color = third
-document.getElementsByTagName('button')[1].style.backgroundColor = first
-document.getElementsByTagName('button')[1].style.color = third
-document.getElementsByTagName('button')[2].style.backgroundColor = first
-document.getElementsByTagName('button')[2].style.color = third
+function setButtonColors () {
+  document.getElementsByTagName('button')[0].style.backgroundColor = primaryColor
+  document.getElementsByTagName('button')[1].style.backgroundColor = primaryColor
+  document.getElementsByTagName('button')[2].style.backgroundColor = primaryColor
 
-document.getElementById('info').style.color = first
+  document.getElementsByTagName('button')[0].style.color = secondaryColor
+  document.getElementsByTagName('button')[1].style.color = secondaryColor
+  document.getElementsByTagName('button')[2].style.color = secondaryColor
+}
+
+generateColorScheme()
+setHtmlColors()
+setButtonColors()
 
 var MerryColors = {
-  ACTIVE_COLOR: new THREE.MeshLambertMaterial({color: new THREE.Color(second)}),
-  INACTIVE_COLOR: new THREE.MeshLambertMaterial({color: new THREE.Color(first)}),
-  HIGHLIGHTED_COLOR: new THREE.MeshLambertMaterial({color: new THREE.Color(third)})
+  ACTIVE_COLOR: new THREE.MeshLambertMaterial({color: new THREE.Color(highlightColor)}),
+  INACTIVE_COLOR: new THREE.MeshLambertMaterial({color: new THREE.Color(primaryColor)}),
+  HIGHLIGHTED_COLOR: new THREE.MeshLambertMaterial({color: new THREE.Color(secondaryColor)})
 }
