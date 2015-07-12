@@ -21,10 +21,6 @@ var MerryCubeCreator = {
       rotation = 0
     }
 
-    if(!rotation) {
-      console.log(mesh.rotation.y)
-    }
-
     mesh.rotation.y += rotation
 
     this.scene.add(mesh)
