@@ -4,7 +4,9 @@
 /* global MerryScheduler */
 /* global MerryClickHandler */
 
-var collection = MerryInitializer.initialize()
+var merryInitializer = new MerryInitializer()
+var collection = merryInitializer.initialize()
+
 var scene = collection['scene']
 var camera = collection['camera']
 
@@ -44,5 +46,6 @@ ringConfig.forEach(function (ringConfig) {
   )
 })
 
-MerryScheduler.watchCollection(rings)
-MerryClickHandler.watchClicks(scene, camera)
+var merryScheduler = new MerryScheduler()
+merryScheduler.watchCollection(rings)
+var merryClickHandler = new MerryClickHandler(scene, camera, merryInitializer)

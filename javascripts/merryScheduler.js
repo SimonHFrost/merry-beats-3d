@@ -1,30 +1,30 @@
 /* global MerryColors */
+function MerryScheduler () {}
 
-var MerryScheduler = {
-  STEP_DURATION: 100,
+MerryScheduler.prototype.STEP_DURATION = 100
 
-  checkAllRings: function checkAllRings (rings, number) {
-    rings.forEach(function (ring) {
-      if (ring.isThereSomethingAtPosition(number)) {
-        var previousMaterial = ring.cubes[number].material
-        if (ring.cubes[number].playClip) {
-          ring.sound.play()
-        }
-        ring.cubes[number].material = MerryColors.ACTIVE_COLOR
-
-        // SO SO HACKY
-        setTimeout(function () {
-          ring.cubes[number].material = previousMaterial
-        }, 100) // It doesn't like using the STEP_DURATION on the module for some reason
+MerryScheduler.prototype.checkAllRings = function (rings, number) {
+  rings.forEach(function (ring) {
+    if (ring.isThereSomethingAtPosition(number)) {
+      var previousMaterial = ring.cubes[number].material
+      if (ring.cubes[number].playClip) {
+        ring.sound.play()
       }
-    })
-  },
+      ring.cubes[number].material = MerryColors.ACTIVE_COLOR
 
-  watchCollection: function watchCollection (rings) {
-    var me = this
-    var count = 0
-    setInterval(function () {
-      me.checkAllRings(rings, count++ % totalHalfBeats)
-    }, me.STEP_DURATION)
-  }
+      // FIXME: Use something better than a timeout
+      setTimeout(function () {
+        ring.cubes[number].material = previousMaterial
+      }, 100) // Using STEP_DURATION on the module doesn't work for some reason
+    }
+  })
+}
+
+MerryScheduler.prototype.watchCollection = function (rings) {
+  var me = this
+  var count = 0
+  setInterval(function () {
+    // FIXME: Don't use global var totalHalfBeats
+    me.checkAllRings(rings, count++ % totalHalfBeats)
+  }, me.STEP_DURATION)
 }

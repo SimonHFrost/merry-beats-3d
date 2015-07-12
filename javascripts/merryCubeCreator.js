@@ -37,7 +37,8 @@ var MerryCubeCreator = {
     return {
       cubes: (function makeCubes () {
         var cubes = []
-        var positions = MerryMaths.getPositionsAroundCircle(numberOfPositions, width)
+        var merryMaths = new MerryMaths()
+        var positions = merryMaths.getPositionsAroundCircle(numberOfPositions, width)
         var currentPosition = 0
         var everyX = Math.floor(totalHalfBeats / numberOfPositions)
         for (var i = 0; i < totalHalfBeats; i++) {

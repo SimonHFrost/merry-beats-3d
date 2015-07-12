@@ -1,19 +1,19 @@
-var MerryMaths = {
-  getPositionsAroundCircle: function getPositionsAroundCircle (numberOfPositions, width) {
-    var circle = Math.PI * 2
+function MerryMaths () {}
 
-    var everyXDegrees = circle / numberOfPositions
+MerryMaths.prototype.getPositionsAroundCircle = function (numberOfPositions, width) {
+  var circle = Math.PI * 2
 
-    var result = []
-    for (var i = 0; i < numberOfPositions; i++) {
-      var currentDegrees = i * everyXDegrees
+  var everyXDegrees = circle / numberOfPositions
 
-      var x = Math.cos(currentDegrees) * width
-      var z = Math.sin(currentDegrees) * width
+  var result = []
+  for (var i = 0; i < numberOfPositions; i++) {
+    var currentDegrees = i * everyXDegrees
 
-      result.push([x, z])
-    }
+    var x = Math.cos(currentDegrees) * width
+    var z = Math.sin(currentDegrees) * width
 
-    return result
+    result.push([x, z])
   }
+
+  return result
 }

@@ -1,76 +1,76 @@
 /* global THREE */
 /* global requestAnimationFrame */
+function MerryInitializer () {}
 
-var MerryInitializer = {
-  height: 600,
-  width: 800,
+MerryInitializer.prototype.HEIGHT = 600
+MerryInitializer.prototype.WIDTH = 800
 
-  createRenderer: function createRenderer () {
-    renderer = new THREE.WebGLRenderer({
-      antialias: true
+MerryInitializer.prototype.createRenderer = function createRenderer () {
+  // FIXME: Make renderer non-global
+  renderer = new THREE.WebGLRenderer({
+    antialias: true
+  })
+  renderer.setClearColor(secondaryColor)
+  renderer.setSize(this.WIDTH, this.HEIGHT)
+  document.getElementById('renderer').appendChild(renderer.domElement)
+  return renderer
+}
+
+MerryInitializer.prototype.createCamera = function createCamera (renderer) {
+  var camera = new THREE.PerspectiveCamera(90, this.WIDTH / this.HEIGHT, 0.01, 1000)
+  camera.position.y = 12
+  var controls = new THREE.OrbitControls(camera, document.getElementById('renderer'))
+  controls.noZoom = true
+  controls.noPan = true
+  controls.maxPolarAngle = Math.PI / 2.2
+  return camera
+}
+
+MerryInitializer.prototype.createRenderLoop = function createRenderLoop () {
+  var renderLoop = []
+  var before = null
+  requestAnimationFrame(function animate (now) {
+    requestAnimationFrame(animate)
+    before = before || now - 1000 / 60
+    var delta = Math.min(200, now - before)
+    before = now
+    renderLoop.forEach(function (renderLoop) {
+      renderLoop(delta / 1000, now / 1000)
     })
-    renderer.setClearColor(secondaryColor)
-    renderer.setSize(this.width, this.height)
-    document.getElementById('renderer').appendChild(renderer.domElement)
-    return renderer
-  },
+  })
+  return renderLoop
+}
 
-  createCamera: function createCamera (renderer) {
-    var camera = new THREE.PerspectiveCamera(90, this.width / this.height, 0.01, 1000)
-    camera.position.y = 12
-    var controls = new THREE.OrbitControls(camera, document.getElementById('renderer'))
-    controls.noZoom = true
-    controls.noPan = true
-    controls.maxPolarAngle = Math.PI / 2.2
-    return camera
-  },
+MerryInitializer.prototype.createLights = function createLights (scene) {
+  var ambientLight = new THREE.AmbientLight(0xAAAAAA)
+  scene.add(ambientLight)
 
-  createRenderLoop: function createRenderLoop () {
-    var renderLoop = []
-    var before = null
-    requestAnimationFrame(function animate (now) {
-      requestAnimationFrame(animate)
-      before = before || now - 1000 / 60
-      var delta = Math.min(200, now - before)
-      before = now
-      renderLoop.forEach(function (renderLoop) {
-        renderLoop(delta / 1000, now / 1000)
-      })
-    })
-    return renderLoop
-  },
+  var directionalLight = new THREE.DirectionalLight(0x999999)
+  directionalLight.position.set(1, 1, 1).normalize()
+  scene.add(directionalLight)
 
-  createLights: function createLights (scene) {
-    var ambientLight = new THREE.AmbientLight(0xAAAAAA)
-    scene.add(ambientLight)
+  return scene
+}
 
-    var directionalLight = new THREE.DirectionalLight(0x999999)
-    directionalLight.position.set(1, 1, 1).normalize()
-    scene.add(directionalLight)
+MerryInitializer.prototype.initialize = function initialize () {
+  var scene
+  renderer
+  var renderLoop
 
-    return scene
-  },
+  var renderer = this.createRenderer({alpha: true})
+  renderLoop = this.createRenderLoop()
 
-  initialize: function initialize () {
-    var scene
-    renderer
-    var renderLoop
+  scene = new THREE.Scene()
+  var camera = this.createCamera(renderer)
 
-    var renderer = this.createRenderer({alpha: true})
-    renderLoop = this.createRenderLoop()
+  renderLoop.push(function () {
+    renderer.render(scene, camera)
+  })
 
-    scene = new THREE.Scene()
-    var camera = this.createCamera(renderer)
+  scene = this.createLights(scene)
 
-    renderLoop.push(function () {
-      renderer.render(scene, camera)
-    })
-
-    scene = this.createLights(scene)
-
-    return {
-      camera: camera,
-      scene: scene
-    }
+  return {
+    camera: camera,
+    scene: scene
   }
 }
