@@ -1,6 +1,8 @@
 /* global THREE */
 /* global requestAnimationFrame */
-function MerryInitializer () {}
+function MerryInitializer (merryColors) {
+  this.merryColors = merryColors
+}
 
 MerryInitializer.prototype.HEIGHT = 600
 MerryInitializer.prototype.WIDTH = 800
@@ -10,7 +12,7 @@ MerryInitializer.prototype.createRenderer = function createRenderer () {
   renderer = new THREE.WebGLRenderer({
     antialias: true
   })
-  renderer.setClearColor(secondaryColor)
+  renderer.setClearColor(this.merryColors.secondaryColor)
   renderer.setSize(this.WIDTH, this.HEIGHT)
   document.getElementById('renderer').appendChild(renderer.domElement)
   return renderer

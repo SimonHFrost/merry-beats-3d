@@ -3,15 +3,16 @@
 /* global MerryColors */
 /* global MerryMaths */
 
-function MerryCubeCreator (scene) {
+function MerryCubeCreator (scene, merryColors) {
   this.scene = scene
+  this.merryColors = merryColors
 }
 
 MerryCubeCreator.prototype.SIZE = 0.25
 
 MerryCubeCreator.prototype.createCube = function (createFunction, x, z, rotation) {
   var geometry = createFunction()
-  var material = MerryColors.INACTIVE_COLOR
+  var material = this.merryColors.INACTIVE_COLOR
   var mesh = new THREE.Mesh(geometry, material)
 
   mesh.position.x = x

@@ -1,5 +1,6 @@
-/* global MerryColors */
-function MerryScheduler () {}
+function MerryScheduler (merryColors) {
+  this.merryColors = merryColors
+}
 
 MerryScheduler.prototype.STEP_DURATION = 100
 
@@ -10,7 +11,7 @@ MerryScheduler.prototype.checkAllRings = function (rings, number) {
       if (ring.cubes[number].playClip) {
         ring.sound.play()
       }
-      ring.cubes[number].material = MerryColors.ACTIVE_COLOR
+      ring.cubes[number].material = this.merryColors.ACTIVE_COLOR
 
       // FIXME: Use something better than a timeout
       setTimeout(function () {

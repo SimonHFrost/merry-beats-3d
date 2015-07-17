@@ -3,8 +3,11 @@
 /* global MerryCubeCreator */
 /* global MerryScheduler */
 /* global MerryClickHandler */
+/* global MerryColors */
 
-var merryInitializer = new MerryInitializer()
+var merryColors = new MerryColors()
+
+var merryInitializer = new MerryInitializer(merryColors)
 var collection = merryInitializer.initialize()
 
 var scene = collection['scene']
@@ -29,7 +32,7 @@ var ringConfig = [
 var rings = []
 var totalHalfBeats = 128
 
-var merryCubeCreator = new MerryCubeCreator(scene)
+var merryCubeCreator = new MerryCubeCreator(scene, merryColors)
 
 ringConfig.forEach(function (ringConfig) {
   if (totalHalfBeats % ringConfig.numberOfPositions !== 0) {
@@ -47,6 +50,6 @@ ringConfig.forEach(function (ringConfig) {
   )
 })
 
-var merryScheduler = new MerryScheduler()
+var merryScheduler = new MerryScheduler(merryColors)
 merryScheduler.watchCollection(rings)
 var merryClickHandler = new MerryClickHandler(scene, camera, merryInitializer)

@@ -1,21 +1,25 @@
 /* global THREE */
 /* global Please */
 
-function generateColorScheme () {
+function MerryColors () {
   var randomColor = Please.make_color({value: '0.95'})[0]
   var scheme = Please.make_scheme(Please.HEX_to_HSV(randomColor), { scheme_type: 'complementary' })
 
-  primaryColor = scheme[0]
-  secondaryColor = scheme[1]
-  highlightColor = 'white'
+  this.primaryColor = scheme[0]
+  this.secondaryColor = scheme[1]
+  this.highlightColor = 'white'
+
+  this.setHtmlColors(this.primaryColor, this.secondaryColor)
+  this.setButtonColors(this.primaryColor, this.secondaryColor)
+  this.setMaterials(this.primaryColor, this.secondaryColor, this.highlightColor)
 }
 
-function setHtmlColors () {
+MerryColors.prototype.setHtmlColors = function (primaryColor, secondaryColor) {
   document.body.style.color = primaryColor
   document.body.style.backgroundColor = secondaryColor
 }
 
-function setButtonColors () {
+MerryColors.prototype.setButtonColors = function (primaryColor, secondaryColor) {
   document.getElementsByTagName('button')[0].style.backgroundColor = primaryColor
   document.getElementsByTagName('button')[1].style.backgroundColor = primaryColor
   document.getElementsByTagName('button')[2].style.backgroundColor = primaryColor
@@ -25,12 +29,8 @@ function setButtonColors () {
   document.getElementsByTagName('button')[2].style.color = secondaryColor
 }
 
-generateColorScheme()
-setHtmlColors()
-setButtonColors()
-
-var MerryColors = {
-  ACTIVE_COLOR: new THREE.MeshLambertMaterial({color: new THREE.Color(highlightColor)}),
-  INACTIVE_COLOR: new THREE.MeshLambertMaterial({color: new THREE.Color(primaryColor)}),
-  HIGHLIGHTED_COLOR: new THREE.MeshLambertMaterial({color: new THREE.Color(secondaryColor)})
+MerryColors.prototype.setMaterials = function (primaryColor, secondaryColor, highlightColor) {
+  this.ACTIVE_COLOR = new THREE.MeshLambertMaterial({color: new THREE.Color(highlightColor)})
+  this.INACTIVE_COLOR = new THREE.MeshLambertMaterial({color: new THREE.Color(primaryColor)})
+  this.HIGHLIGHTED_COLOR = new THREE.MeshLambertMaterial({color: new THREE.Color(secondaryColor)})
 }
