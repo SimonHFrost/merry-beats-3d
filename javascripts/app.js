@@ -29,14 +29,15 @@ var ringConfig = [
 var rings = []
 var totalHalfBeats = 128
 
+var merryCubeCreator = new MerryCubeCreator(scene)
+
 ringConfig.forEach(function (ringConfig) {
   if (totalHalfBeats % ringConfig.numberOfPositions !== 0) {
     console.warn('numberOfPositions must be a factor of totalHalfBeats')
   }
 
   rings.push(
-    MerryCubeCreator.createRingOfCubes(
-      scene,
+    merryCubeCreator.createRingOfCubes(
       totalHalfBeats,
       ringConfig.numberOfPositions,
       ringConfig.width,
