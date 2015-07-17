@@ -30,6 +30,7 @@ MerryCubeCreator.prototype.createCube = function (createFunction, x, z, rotation
   return mesh
 }
 
+// FIXME: Reduce params
 MerryCubeCreator.prototype.createRingOfCubes = function (totalHalfBeats, numberOfPositions, width, soundName, createFunction, rotation) {
   var me = this
   // FIXME: Don't use object here

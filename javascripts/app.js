@@ -5,6 +5,10 @@
 /* global MerryClickHandler */
 /* global MerryColors */
 
+// FIXME: Remove globals from top of files
+
+// FIXME: OO this file
+
 var merryColors = new MerryColors()
 
 var merryInitializer = new MerryInitializer(merryColors)
