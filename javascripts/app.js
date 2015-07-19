@@ -1,9 +1,10 @@
 var MerryInitializer = window.MerryInitializer
+var MerryColors = window.MerryColors
+var MerryMaths = window.MerryMaths
 var MerryCubeCreator = window.MerryCubeCreator
 var MerryScheduler = window.MerryScheduler
 var MerryClickHandler = window.MerryClickHandler
-var MerryColors = window.MerryColors
-var THREE = window.THREE
+var MerryRing = window.MerryRing
 
 function App () {}
 
@@ -13,13 +14,20 @@ App.prototype.start = function () {
   var merryColors = new MerryColors()
 
   var merryInitializer = new MerryInitializer(merryColors)
+
+  var merryMaths = new MerryMaths()
+
+
+  // FIXME: Rename collection
   var collection = merryInitializer.initialize()
 
   var scene = collection.scene
   var camera = collection.camera
 
+  var merryCubeCreator = new MerryCubeCreator(scene, merryColors)
+
   var ringConfig = this._prepareRingConfig()
-  var rings = this._createRingsFromConfig(scene, merryColors, ringConfig)
+  var rings = this._createRingsFromConfig(scene, merryColors, ringConfig, merryMaths, merryColors, merryCubeCreator)
 
   var merryScheduler = new MerryScheduler(merryColors)
   merryScheduler.watchCollection(rings, this.TOTAL_HALF_BEATS)
@@ -39,9 +47,8 @@ App.prototype._prepareRingConfig = function () {
   return ringConfig
 }
 
-App.prototype._createRingsFromConfig = function (scene, merryColors, ringConfig) {
+App.prototype._createRingsFromConfig = function (scene, merryColors, ringConfig, merryMaths, merryColors, merryCubeCreator) {
   var me = this
-  var merryCubeCreator = new MerryCubeCreator(scene, merryColors)
   var rings = []
 
   ringConfig.forEach(function (ringConfig) {
@@ -49,11 +56,9 @@ App.prototype._createRingsFromConfig = function (scene, merryColors, ringConfig)
       console.warn('numberOfPositions must be a factor of TOTAL_HALF_BEATS')
     }
 
+    // FIXME: Remove the initialize method
     rings.push(
-      merryCubeCreator.createRingOfCubes(
-        me.TOTAL_HALF_BEATS,
-        ringConfig
-      )
+      new MerryRing(merryCubeCreator, me.TOTAL_HALF_BEATS, ringConfig, merryColors)
     )
   })
   return rings

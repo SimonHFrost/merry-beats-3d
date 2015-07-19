@@ -4,21 +4,10 @@ function MerryScheduler (merryColors) {
 
 MerryScheduler.prototype.STEP_DURATION = 100
 
+// FIXME: rename 'number' variables to 'index'
 MerryScheduler.prototype.checkAllRings = function (rings, number) {
-  var me = this
   rings.forEach(function (ring) {
-    if (ring.isThereSomethingAtPosition(number)) {
-      var previousMaterial = ring.cubes[number].material
-      if (ring.cubes[number].playClip) {
-        ring.sound.play()
-      }
-      ring.cubes[number].material = me.merryColors.ACTIVE_COLOR
-
-      // FIXME: Use something better than a timeout
-      setTimeout(function () {
-        ring.cubes[number].material = previousMaterial
-      }, 100) // FIXME: Using STEP_DURATION on the module doesn't work for some reason
-    }
+    ring.toggleLocation(number)
   })
 }
 
