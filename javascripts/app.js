@@ -12,24 +12,20 @@ App.prototype.TOTAL_HALF_BEATS = 128
 
 App.prototype.start = function () {
   var merryColors = new MerryColors()
-
-  var merryInitializer = new MerryInitializer(merryColors)
-
   var merryMaths = new MerryMaths()
 
-  // FIXME: Rename collection
-  var collection = merryInitializer.initialize()
-
-  var scene = collection.scene
-  var camera = collection.camera
+  var merryInitializer = new MerryInitializer(merryColors)
+  var output = merryInitializer.initialize()
+  var scene = output.scene
+  var camera = output.camera
 
   var merryCubeCreator = new MerryCubeCreator(scene, merryColors)
 
   var ringConfig = this._prepareRingConfig()
-  var rings = this._createRingsFromConfig(scene, merryColors, ringConfig, merryMaths, merryColors, merryCubeCreator)
+  var rings = this._createRingsFromConfig(merryColors, ringConfig, merryMaths, merryColors, merryCubeCreator)
 
-  var merryScheduler = new MerryScheduler(merryColors)
-  merryScheduler.watchCollection(rings, this.TOTAL_HALF_BEATS)
+  var merryScheduler = new MerryScheduler(merryColors, this.TOTAL_HALF_BEATS)
+  merryScheduler.watchCollection(rings)
   var merryClickHandler = new MerryClickHandler(scene, camera, merryInitializer, merryColors)
 }
 
@@ -46,7 +42,8 @@ App.prototype._prepareRingConfig = function () {
   return ringConfig
 }
 
-App.prototype._createRingsFromConfig = function (scene, merryColors, ringConfig, merryMaths, merryColors, merryCubeCreator) {
+// FIXME: Reduce params
+App.prototype._createRingsFromConfig = function (merryColors, ringConfig, merryMaths, merryColors, merryCubeCreator) {
   var me = this
   var rings = []
 
@@ -56,7 +53,7 @@ App.prototype._createRingsFromConfig = function (scene, merryColors, ringConfig,
     }
 
     rings.push(
-      new MerryRing(merryCubeCreator, me.TOTAL_HALF_BEATS, ringConfig, merryColors)
+      new MerryRing(merryCubeCreator, merryColors, me.TOTAL_HALF_BEATS, ringConfig)
     )
   })
   return rings
