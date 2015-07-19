@@ -32,8 +32,8 @@ App.prototype.start = function () {
 App.prototype._prepareRingConfig = function () {
   return [
     { numberOfPositions: 128, radius: 6, soundName: 'closedHihat', shape: 'rectangle' },
-    { numberOfPositions: 32, radius: 5, soundName: 'closedHihat', shape: 'square' },
-    { numberOfPositions: 64, radius: 4, soundName: 'snare', shape: 'rectangle' },
+    { numberOfPositions: 32, radius: 5, soundName: 'closedHihat', shape: 'slanted' },
+    { numberOfPositions: 64, radius: 4, soundName: 'snare', shape: 'square' },
     { numberOfPositions: 32, radius: 3, soundName: 'clap', shape: 'square' },
     { numberOfPositions: 16, radius: 2, soundName: 'kick', shape: 'rectangle' }
   ]

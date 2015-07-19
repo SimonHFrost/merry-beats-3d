@@ -9,15 +9,19 @@ MerryShapeCreator.prototype.SIZE = 0.25
 
 MerryShapeCreator.prototype.createShape = function (x, z, shape) {
   if (shape === 'square') {
-    return this._createCube(new THREE.BoxGeometry(0.25, 0.25, 0.25), x, z)
+    return this._createMesh(new THREE.BoxGeometry(0.25, 0.25, 0.25), x, z)
   } else if (shape === 'rectangle') {
-    return this._createCube(new THREE.BoxGeometry(0.25, 0.25, 0.75), x, z)
+    return this._createMesh(new THREE.BoxGeometry(0.25, 0.25, 0.75), x, z)
+  } else if (shape === 'slanted') {
+    var mesh = this._createMesh(new THREE.BoxGeometry(0.25, 0.25, 0.75), x, z)
+    mesh.rotation.y += 10
+    return mesh
   } else {
     console.warn('Unknown shape: ' + shape)
   }
 }
 
-MerryShapeCreator.prototype._createCube = function (geometry, x, z) {
+MerryShapeCreator.prototype._createMesh = function (geometry, x, z) {
   var material = this.merryColors.INACTIVE_COLOR
   var mesh = new THREE.Mesh(geometry, material)
 
