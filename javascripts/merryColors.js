@@ -2,6 +2,10 @@ var THREE = window.THREE
 var Please = window.Please
 
 function MerryColors () {
+  this.initialize()
+}
+
+MerryColors.prototype.initialize = function () {
   var randomColor = Please.make_color({value: '0.95'})[0]
   var scheme = Please.make_scheme(Please.HEX_to_HSV(randomColor), { scheme_type: 'complementary' })
 

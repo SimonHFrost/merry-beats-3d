@@ -8,6 +8,9 @@ function MerryClickHandler (scene, camera, merryInitializer, merryColors) {
 
   // NOTE: .bind(this) passes the prototype context to target function
   window.addEventListener('click', this.onClick.bind(this))
+  document.getElementById('new-color').addEventListener('click', function () {
+    merryColors.initialize()
+  })
 }
 
 MerryClickHandler.prototype.SCENE = ''
