@@ -1,11 +1,9 @@
-/* global THREE */
-/* global MerryInitializer */
-/* global MerryCubeCreator */
-/* global MerryScheduler */
-/* global MerryClickHandler */
-/* global MerryColors */
-
-// FIXME: Remove globals from top of files
+var MerryInitializer = window.MerryInitializer
+var MerryCubeCreator = window.MerryCubeCreator
+var MerryScheduler = window.MerryScheduler
+var MerryClickHandler = window.MerryClickHandler
+var MerryColors = window.MerryColors
+var THREE = window.THREE
 
 // FIXME: Move totalHalfBeats into app prototype
 var totalHalfBeats = 128

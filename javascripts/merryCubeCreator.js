@@ -1,7 +1,6 @@
-/* global Audio */
-/* global THREE */
-/* global MerryColors */
-/* global MerryMaths */
+var Audio = window.Audio
+var THREE = window.THREE
+var MerryMaths = window.MerryMaths
 
 function MerryCubeCreator (scene, merryColors) {
   this.scene = scene

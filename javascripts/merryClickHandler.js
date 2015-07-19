@@ -1,5 +1,5 @@
-/* global THREE */
-/* global MerryColors */
+var THREE = window.THREE
+
 function MerryClickHandler (scene, camera, merryInitializer, merryColors) {
   this.SCENE = scene
   this.CAMERA = camera

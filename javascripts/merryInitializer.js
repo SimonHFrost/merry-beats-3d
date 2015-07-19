@@ -1,5 +1,7 @@
-/* global THREE */
+// FIXME: Remove requestAnimationFrame global
 /* global requestAnimationFrame */
+var THREE = window.THREE
+
 function MerryInitializer (merryColors) {
   this.merryColors = merryColors
 }
@@ -8,8 +10,7 @@ MerryInitializer.prototype.HEIGHT = 600
 MerryInitializer.prototype.WIDTH = 800
 
 MerryInitializer.prototype.createRenderer = function createRenderer () {
-  // FIXME: Make renderer non-global
-  renderer = new THREE.WebGLRenderer({
+  var renderer = new THREE.WebGLRenderer({
     antialias: true
   })
   renderer.setClearColor(this.merryColors.secondaryColor)
@@ -57,7 +58,6 @@ MerryInitializer.prototype.createLights = function createLights (scene) {
 MerryInitializer.prototype.initialize = function initialize () {
   var scene
   // FIXME: Make renderer private
-  renderer
   var renderLoop
 
   var renderer = this.createRenderer({alpha: true})

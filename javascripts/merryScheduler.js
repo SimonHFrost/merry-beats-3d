@@ -17,7 +17,7 @@ MerryScheduler.prototype.checkAllRings = function (rings, number) {
       // FIXME: Use something better than a timeout
       setTimeout(function () {
         ring.cubes[number].material = previousMaterial
-      }, 100) // Using STEP_DURATION on the module doesn't work for some reason
+      }, 100) // FIXME: Using STEP_DURATION on the module doesn't work for some reason
     }
   })
 }

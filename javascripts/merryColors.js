@@ -1,5 +1,5 @@
-/* global THREE */
-/* global Please */
+var THREE = window.THREE
+var Please = window.Please
 
 function MerryColors () {
   var randomColor = Please.make_color({value: '0.95'})[0]
