@@ -21,8 +21,8 @@ App.prototype.start = function () {
 
   var merryCubeCreator = new MerryCubeCreator(scene, merryColors)
 
-  var ringConfig = this._prepareRingConfig()
-  var rings = this._createRingsFromConfig(merryColors, ringConfig, merryMaths, merryColors, merryCubeCreator)
+  var allRingConfig = this._prepareRingConfig()
+  var rings = this._createRingsFromConfig(merryColors, merryMaths, merryCubeCreator, allRingConfig)
 
   var merryScheduler = new MerryScheduler(merryColors, this.TOTAL_HALF_BEATS)
   merryScheduler.watchCollection(rings)
@@ -30,24 +30,21 @@ App.prototype.start = function () {
 }
 
 App.prototype._prepareRingConfig = function () {
-
-  var ringConfig = [
+  return [
     { numberOfPositions: 128, width: 6, soundName: 'closedHihat' },
     { numberOfPositions: 32, width: 5, soundName: 'closedHihat' },
     { numberOfPositions: 64, width: 4, soundName: 'snare' },
     { numberOfPositions: 32, width: 3, soundName: 'clap' },
     { numberOfPositions: 16, width: 2, soundName: 'kick' }
   ]
-
-  return ringConfig
 }
 
 // FIXME: Reduce params
-App.prototype._createRingsFromConfig = function (merryColors, ringConfig, merryMaths, merryColors, merryCubeCreator) {
+App.prototype._createRingsFromConfig = function (merryColors, merryMaths, merryCubeCreator, allRingConfig) {
   var me = this
   var rings = []
 
-  ringConfig.forEach(function (ringConfig) {
+  allRingConfig.forEach(function (ringConfig) {
     if (me.TOTAL_HALF_BEATS % ringConfig.numberOfPositions !== 0) {
       console.warn('numberOfPositions must be a factor of TOTAL_HALF_BEATS')
     }

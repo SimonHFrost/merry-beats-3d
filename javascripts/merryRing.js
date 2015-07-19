@@ -37,6 +37,7 @@ MerryRing.prototype.initialize = function () {
     }
   }
 
+  // FIXME: Use html5 audio source?
   this.sound = new Audio('sounds/' + this.ringConfig.soundName + '.wav')
 }
 

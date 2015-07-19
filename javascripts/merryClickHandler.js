@@ -14,8 +14,8 @@ MerryClickHandler.prototype.SCENE = ''
 MerryClickHandler.prototype.CAMERA = ''
 
 MerryClickHandler.prototype.onClick = function onClick (e) {
-  var x = (e.clientX / this.merryInitializer.WIDTH) * 2 - 1
-  var y = -(e.clientY / this.merryInitializer.HEIGHT) * 2 + 1
+  var x = (e.clientX / this.merryInitializer.SCREEN_WIDTH) * 2 - 1
+  var y = -(e.clientY / this.merryInitializer.SCREEN_HEIGHT) * 2 + 1
   var mouse = new THREE.Vector2(x, y)
   var raycaster = new THREE.Raycaster()
   raycaster.setFromCamera(mouse, this.CAMERA)
