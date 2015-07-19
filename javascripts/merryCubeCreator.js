@@ -9,7 +9,7 @@ function MerryCubeCreator (scene, merryColors) {
 
 MerryCubeCreator.prototype.SIZE = 0.25
 
-MerryCubeCreator.prototype.createCube = function (createFunction, x, z, rotation) {
+MerryCubeCreator.prototype.createCube = function (createFunction, x, z) {
   var geometry = createFunction()
   var material = this.merryColors.INACTIVE_COLOR
   var mesh = new THREE.Mesh(geometry, material)
@@ -19,11 +19,6 @@ MerryCubeCreator.prototype.createCube = function (createFunction, x, z, rotation
   mesh.position.z = z
 
   mesh.lookAt(new THREE.Vector3(0, 0, 0))
-  if (!rotation) {
-    rotation = 0
-  }
-
-  mesh.rotation.y += rotation
 
   this.scene.add(mesh)
   return mesh
@@ -32,7 +27,7 @@ MerryCubeCreator.prototype.createCube = function (createFunction, x, z, rotation
 MerryCubeCreator.prototype.createRingOfCubes = function (totalHalfBeats, ringConfig) {
   var me = this
 
-  // FIXME: Don't use object here
+  // FIXME: Improve this object structure
   return {
     cubes: (function makeCubes () {
       var cubes = []
@@ -43,7 +38,7 @@ MerryCubeCreator.prototype.createRingOfCubes = function (totalHalfBeats, ringCon
       for (var i = 0; i < totalHalfBeats; i++) {
         var position = positions[currentPosition]
         if (i % everyX === 0) {
-          cubes[i] = me.createCube(ringConfig.createFunction, position[0], position[1], ringConfig.rotation)
+          cubes[i] = me.createCube(ringConfig.createFunction, position[0], position[1])
           currentPosition++
         }
       }
