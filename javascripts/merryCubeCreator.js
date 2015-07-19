@@ -9,8 +9,7 @@ function MerryCubeCreator (scene, merryColors) {
 
 MerryCubeCreator.prototype.SIZE = 0.25
 
-MerryCubeCreator.prototype.createCube = function (createFunction, x, z) {
-  var geometry = createFunction()
+MerryCubeCreator.prototype.createCube = function (geometry, x, z) {
   var material = this.merryColors.INACTIVE_COLOR
   var mesh = new THREE.Mesh(geometry, material)
 
@@ -22,6 +21,14 @@ MerryCubeCreator.prototype.createCube = function (createFunction, x, z) {
 
   this.scene.add(mesh)
   return mesh
+}
+
+MerryCubeCreator.prototype.createSquare = function (x, z) {
+  return this.createCube(new THREE.BoxGeometry(0.25, 0.25, 0.25), x, z)
+}
+
+MerryCubeCreator.prototype.createRectangle = function (x, z) {
+  return this.createCube(new THREE.BoxGeometry(0.25, 0.25, 0.75), x, z)
 }
 
 MerryCubeCreator.prototype.createRingOfCubes = function (totalHalfBeats, ringConfig) {
@@ -38,7 +45,7 @@ MerryCubeCreator.prototype.createRingOfCubes = function (totalHalfBeats, ringCon
       for (var i = 0; i < totalHalfBeats; i++) {
         var position = positions[currentPosition]
         if (i % everyX === 0) {
-          cubes[i] = me.createCube(ringConfig.createFunction, position[0], position[1])
+          cubes[i] = me.createSquare(position[0], position[1])
           currentPosition++
         }
       }
