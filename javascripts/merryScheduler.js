@@ -5,13 +5,14 @@ function MerryScheduler (merryColors) {
 MerryScheduler.prototype.STEP_DURATION = 100
 
 MerryScheduler.prototype.checkAllRings = function (rings, number) {
+  var me = this
   rings.forEach(function (ring) {
     if (ring.isThereSomethingAtPosition(number)) {
       var previousMaterial = ring.cubes[number].material
       if (ring.cubes[number].playClip) {
         ring.sound.play()
       }
-      ring.cubes[number].material = this.merryColors.ACTIVE_COLOR
+      ring.cubes[number].material = me.merryColors.ACTIVE_COLOR
 
       // FIXME: Use something better than a timeout
       setTimeout(function () {

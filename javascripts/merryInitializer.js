@@ -56,6 +56,7 @@ MerryInitializer.prototype.createLights = function createLights (scene) {
 
 MerryInitializer.prototype.initialize = function initialize () {
   var scene
+  // FIXME: Make renderer private
   renderer
   var renderLoop
 

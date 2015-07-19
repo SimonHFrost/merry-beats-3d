@@ -1,29 +1,32 @@
 /* global THREE */
 /* global MerryColors */
-function MerryClickHandler (scene, camera, merryInitializer) {
+function MerryClickHandler (scene, camera, merryInitializer, merryColors) {
   this.SCENE = scene
   this.CAMERA = camera
   this.merryInitializer = merryInitializer
-  window.addEventListener('click', this.onClick)
+  this.merryColors = merryColors
+
+  // NOTE: .bind(this) passes the prototype context to target function
+  window.addEventListener('click', this.onClick.bind(this))
 }
 
 MerryClickHandler.prototype.SCENE = ''
 MerryClickHandler.prototype.CAMERA = ''
 
 MerryClickHandler.prototype.onClick = function onClick (e) {
-  var x = (e.clientX / this.merryInitializer.width) * 2 - 1
-  var y = -(e.clientY / this.merryInitializer.height) * 2 + 1
+  var x = (e.clientX / this.merryInitializer.WIDTH) * 2 - 1
+  var y = -(e.clientY / this.merryInitializer.HEIGHT) * 2 + 1
   var mouse = new THREE.Vector2(x, y)
   var raycaster = new THREE.Raycaster()
-  raycaster.setFromCamera(mouse, this.camera)
-  var intersects = raycaster.intersectObjects(this.scene.children)
+  raycaster.setFromCamera(mouse, this.CAMERA)
+  var intersects = raycaster.intersectObjects(this.SCENE.children)
   for (var i = 0; i < intersects.length; i++) {
     var cube = intersects[i].object
     if (cube.playClip) {
-      cube.material = MerryColors.INACTIVE_COLOR
+      cube.material = this.merryColors.INACTIVE_COLOR
       cube.playClip = false
     } else {
-      cube.material = MerryColors.ACTIVE_COLOR
+      cube.material = this.merryColors.ACTIVE_COLOR
       cube.playClip = true
     }
   }
