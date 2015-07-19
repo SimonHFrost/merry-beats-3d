@@ -22,11 +22,10 @@ MerryScheduler.prototype.checkAllRings = function (rings, number) {
   })
 }
 
-MerryScheduler.prototype.watchCollection = function (rings) {
+MerryScheduler.prototype.watchCollection = function (rings, totalHalfBeats) {
   var me = this
   var count = 0
   setInterval(function () {
-    // FIXME: Don't use global var totalHalfBeats
     me.checkAllRings(rings, count++ % totalHalfBeats)
   }, me.STEP_DURATION)
 }

@@ -56,14 +56,10 @@ MerryInitializer.prototype.createLights = function createLights (scene) {
 }
 
 MerryInitializer.prototype.initialize = function initialize () {
-  var scene
-  // FIXME: Make renderer private
-  var renderLoop
-
   var renderer = this.createRenderer({alpha: true})
-  renderLoop = this.createRenderLoop()
+  var renderLoop = this.createRenderLoop()
 
-  scene = new THREE.Scene()
+  var scene = new THREE.Scene()
   var camera = this.createCamera(renderer)
 
   renderLoop.push(function () {

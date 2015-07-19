@@ -5,10 +5,9 @@ var MerryClickHandler = window.MerryClickHandler
 var MerryColors = window.MerryColors
 var THREE = window.THREE
 
-// FIXME: Move totalHalfBeats into app prototype
-var totalHalfBeats = 128
-
 function App () {}
+
+App.prototype.TOTAL_HALF_BEATS = 128
 
 App.prototype.start = function () {
   var merryColors = new MerryColors()
@@ -23,7 +22,7 @@ App.prototype.start = function () {
   var rings = this._createRingsFromConfig(scene, merryColors, ringConfig)
 
   var merryScheduler = new MerryScheduler(merryColors)
-  merryScheduler.watchCollection(rings)
+  merryScheduler.watchCollection(rings, this.TOTAL_HALF_BEATS)
   var merryClickHandler = new MerryClickHandler(scene, camera, merryInitializer, merryColors)
 }
 
@@ -48,17 +47,18 @@ App.prototype._prepareRingConfig = function () {
 }
 
 App.prototype._createRingsFromConfig = function (scene, merryColors, ringConfig) {
+  var me = this
   var merryCubeCreator = new MerryCubeCreator(scene, merryColors)
-
   var rings = []
+
   ringConfig.forEach(function (ringConfig) {
-    if (totalHalfBeats % ringConfig.numberOfPositions !== 0) {
-      console.warn('numberOfPositions must be a factor of totalHalfBeats')
+    if (me.TOTAL_HALF_BEATS % ringConfig.numberOfPositions !== 0) {
+      console.warn('numberOfPositions must be a factor of TOTAL_HALF_BEATS')
     }
 
     rings.push(
       merryCubeCreator.createRingOfCubes(
-        totalHalfBeats,
+        me.TOTAL_HALF_BEATS,
         ringConfig.numberOfPositions,
         ringConfig.width,
         ringConfig.soundName,
