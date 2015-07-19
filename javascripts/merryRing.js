@@ -12,7 +12,7 @@ function MerryRing (merryCubeCreator, merryColors, totalHalfBeats, ringConfig) {
   this._initialize()
 }
 
-MerryRing.prototype.toggleLocation = function (index) {
+MerryRing.prototype.toggleAtIndex = function (index) {
   var me = this
 
   if (this._isThereCubeOnBeat(index)) {
@@ -25,7 +25,6 @@ MerryRing.prototype.toggleLocation = function (index) {
   }
 
   this.cubes[index].material = this.merryColors.ACTIVE_COLOR
-  this.cubes[index - this._beatInterval()].material = previousMaterial
 
   // FIXME: Use something better than a timeout
   setTimeout(function () {

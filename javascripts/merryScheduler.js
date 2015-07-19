@@ -15,6 +15,6 @@ MerryScheduler.prototype.watchCollection = function (rings) {
 
 MerryScheduler.prototype._checkAllRings = function (rings, index) {
   rings.forEach(function (ring) {
-    ring.toggleLocation(index)
+    ring.toggleAtIndex(index)
   })
 }
