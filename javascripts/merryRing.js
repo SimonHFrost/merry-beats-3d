@@ -4,19 +4,22 @@ var MerryMaths = window.MerryMaths
 function MerryRing (merryCubeCreator, totalHalfBeats, ringConfig, merryColors) {
   // FIXME: Is there a better way to DI?
   this.merryMaths = new MerryMaths()
+
   this.merryCubeCreator = merryCubeCreator
+  this.totalHalfBeats = totalHalfBeats
+  this.ringConfig = ringConfig
   this.merryColors = merryColors
-  this.initialize(totalHalfBeats, ringConfig)
-  this.numberOfPositions = ringConfig.numberOfPositions
+
+  this.initialize()
 }
 
 // FIXME: Put totalHalfBeats somewhere more central
-MerryRing.prototype.initialize = function (totalHalfBeats, ringConfig) {
+MerryRing.prototype.initialize = function () {
   this.cubes = []
-  var positions = this.merryMaths.getPositionsAroundCircle(ringConfig.numberOfPositions, ringConfig.width)
+  var positions = this.merryMaths.getPositionsAroundCircle(this.ringConfig.numberOfPositions, this.ringConfig.width)
   var currentPosition = 0
-  var everyX = Math.floor(totalHalfBeats / ringConfig.numberOfPositions)
-  for (var i = 0; i < totalHalfBeats; i++) {
+  var everyX = Math.floor(this.totalHalfBeats / this.ringConfig.numberOfPositions)
+  for (var i = 0; i < this.totalHalfBeats; i++) {
     var position = positions[currentPosition]
     if (i % everyX === 0) {
       this.cubes[i] = this.merryCubeCreator.createSquare(position[0], position[1])
@@ -24,11 +27,7 @@ MerryRing.prototype.initialize = function (totalHalfBeats, ringConfig) {
     }
   }
 
-  this.sound = new Audio('sounds/' + ringConfig.soundName + '.wav')
-}
-
-MerryRing.prototype.isThereSomethingAtLocation = function (index) {
-  return !!this.cubes[index]
+  this.sound = new Audio('sounds/' + this.ringConfig.soundName + '.wav')
 }
 
 MerryRing.prototype.playSound = function () {
@@ -38,7 +37,8 @@ MerryRing.prototype.playSound = function () {
 MerryRing.prototype.toggleLocation = function (index) {
   var me = this
 
-  if (index % this.numberOfPositions !== 0) {
+  // FIXME: Can this logic be centralized?
+  if (index % Math.floor(this.totalHalfBeats / this.ringConfig.numberOfPositions) !== 0) {
     return
   }
 

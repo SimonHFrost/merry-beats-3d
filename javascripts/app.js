@@ -17,7 +17,6 @@ App.prototype.start = function () {
 
   var merryMaths = new MerryMaths()
 
-
   // FIXME: Rename collection
   var collection = merryInitializer.initialize()
 
@@ -56,7 +55,6 @@ App.prototype._createRingsFromConfig = function (scene, merryColors, ringConfig,
       console.warn('numberOfPositions must be a factor of TOTAL_HALF_BEATS')
     }
 
-    // FIXME: Remove the initialize method
     rings.push(
       new MerryRing(merryCubeCreator, me.TOTAL_HALF_BEATS, ringConfig, merryColors)
     )
