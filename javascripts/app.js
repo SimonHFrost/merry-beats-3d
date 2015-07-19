@@ -31,11 +31,11 @@ App.prototype.start = function () {
 
 App.prototype._prepareRingConfig = function () {
   return [
-    { numberOfPositions: 128, radius: 6, soundName: 'closedHihat' },
-    { numberOfPositions: 32, radius: 5, soundName: 'closedHihat' },
-    { numberOfPositions: 64, radius: 4, soundName: 'snare' },
-    { numberOfPositions: 32, radius: 3, soundName: 'clap' },
-    { numberOfPositions: 16, radius: 2, soundName: 'kick' }
+    { numberOfPositions: 128, radius: 6, soundName: 'closedHihat', shape: 'rectangle' },
+    { numberOfPositions: 32, radius: 5, soundName: 'closedHihat', shape: 'square' },
+    { numberOfPositions: 64, radius: 4, soundName: 'snare', shape: 'rectangle' },
+    { numberOfPositions: 32, radius: 3, soundName: 'clap', shape: 'square' },
+    { numberOfPositions: 16, radius: 2, soundName: 'kick', shape: 'rectangle' }
   ]
 }
 

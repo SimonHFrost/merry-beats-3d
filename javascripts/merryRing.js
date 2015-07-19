@@ -40,7 +40,7 @@ MerryRing.prototype._initialize = function () {
   for (var i = 0; i < this.totalHalfBeats; i++) {
     var position = positions[currentPosition]
     if (i % everyX === 0) {
-      this.cubes[i] = this.merryCubeCreator.createSquare(position[0], position[1])
+      this.cubes[i] = this.merryCubeCreator.createSquare(position[0], position[1], this.ringConfig.shape)
       currentPosition++
     }
   }

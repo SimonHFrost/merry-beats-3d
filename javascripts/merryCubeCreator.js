@@ -7,12 +7,14 @@ function MerryCubeCreator (scene, merryColors) {
 
 MerryCubeCreator.prototype.SIZE = 0.25
 
-MerryCubeCreator.prototype.createSquare = function (x, z) {
-  return this._createCube(new THREE.BoxGeometry(0.25, 0.25, 0.25), x, z)
-}
-
-MerryCubeCreator.prototype.createRectangle = function (x, z) {
-  return this._createCube(new THREE.BoxGeometry(0.25, 0.25, 0.75), x, z)
+MerryCubeCreator.prototype.createSquare = function (x, z, shape) {
+  if (shape === 'square') {
+    return this._createCube(new THREE.BoxGeometry(0.25, 0.25, 0.25), x, z)
+  } else if (shape === 'rectangle') {
+    return this._createCube(new THREE.BoxGeometry(0.25, 0.25, 0.75), x, z)
+  } else {
+    console.warn('Unknown shape: ' + shape)
+  }
 }
 
 MerryCubeCreator.prototype._createCube = function (geometry, x, z) {
