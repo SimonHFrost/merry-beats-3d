@@ -29,7 +29,6 @@ MerryCubeCreator.prototype.createCube = function (createFunction, x, z, rotation
   return mesh
 }
 
-// FIXME: Reduce params
 MerryCubeCreator.prototype.createRingOfCubes = function (totalHalfBeats, ringConfig) {
   var me = this
 

@@ -15,8 +15,8 @@ App.prototype.start = function () {
   var merryInitializer = new MerryInitializer(merryColors)
   var collection = merryInitializer.initialize()
 
-  var scene = collection['scene']
-  var camera = collection['camera']
+  var scene = collection.scene
+  var camera = collection.camera
 
   var ringConfig = this._prepareRingConfig()
   var rings = this._createRingsFromConfig(scene, merryColors, ringConfig)
