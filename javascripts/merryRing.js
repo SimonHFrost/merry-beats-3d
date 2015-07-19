@@ -1,10 +1,10 @@
 var Audio = window.Audio
 var MerryMaths = window.MerryMaths
 
-function MerryRing (merryCubeCreator, merryColors, totalHalfBeats, ringConfig) {
+function MerryRing (merryShapeCreator, merryColors, totalHalfBeats, ringConfig) {
   this.merryMaths = new MerryMaths()
 
-  this.merryCubeCreator = merryCubeCreator
+  this.merryShapeCreator = merryShapeCreator
   this.totalHalfBeats = totalHalfBeats
   this.ringConfig = ringConfig
   this.merryColors = merryColors
@@ -40,7 +40,7 @@ MerryRing.prototype._initialize = function () {
   for (var i = 0; i < this.totalHalfBeats; i++) {
     var position = positions[currentPosition]
     if (i % everyX === 0) {
-      this.cubes[i] = this.merryCubeCreator.createSquare(position[0], position[1], this.ringConfig.shape)
+      this.cubes[i] = this.merryShapeCreator.createShape(position[0], position[1], this.ringConfig.shape)
       currentPosition++
     }
   }

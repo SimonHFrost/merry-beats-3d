@@ -1,7 +1,7 @@
 var MerryInitializer = window.MerryInitializer
 var MerryColors = window.MerryColors
 var MerryMaths = window.MerryMaths
-var MerryCubeCreator = window.MerryCubeCreator
+var MerryShapeCreator = window.MerryShapeCreator
 var MerryScheduler = window.MerryScheduler
 var MerryClickHandler = window.MerryClickHandler
 var MerryRing = window.MerryRing
@@ -19,10 +19,10 @@ App.prototype.start = function () {
   var scene = output.scene
   var camera = output.camera
 
-  var merryCubeCreator = new MerryCubeCreator(scene, merryColors)
+  var merryShapeCreator = new MerryShapeCreator(scene, merryColors)
 
   var allRingConfig = this._prepareRingConfig()
-  var rings = this._createRingsFromConfig(merryColors, merryMaths, merryCubeCreator, allRingConfig)
+  var rings = this._createRingsFromConfig(merryColors, merryMaths, merryShapeCreator, allRingConfig)
 
   var merryScheduler = new MerryScheduler(merryColors, this.TOTAL_HALF_BEATS)
   merryScheduler.watchCollection(rings)
@@ -39,7 +39,7 @@ App.prototype._prepareRingConfig = function () {
   ]
 }
 
-App.prototype._createRingsFromConfig = function (merryColors, merryMaths, merryCubeCreator, allRingConfig) {
+App.prototype._createRingsFromConfig = function (merryColors, merryMaths, merryShapeCreator, allRingConfig) {
   var me = this
   var rings = []
 
@@ -49,7 +49,7 @@ App.prototype._createRingsFromConfig = function (merryColors, merryMaths, merryC
     }
 
     rings.push(
-      new MerryRing(merryCubeCreator, merryColors, me.TOTAL_HALF_BEATS, ringConfig)
+      new MerryRing(merryShapeCreator, merryColors, me.TOTAL_HALF_BEATS, ringConfig)
     )
   })
   return rings

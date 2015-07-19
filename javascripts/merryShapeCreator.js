@@ -1,13 +1,13 @@
 var THREE = window.THREE
 
-function MerryCubeCreator (scene, merryColors) {
+function MerryShapeCreator (scene, merryColors) {
   this.scene = scene
   this.merryColors = merryColors
 }
 
-MerryCubeCreator.prototype.SIZE = 0.25
+MerryShapeCreator.prototype.SIZE = 0.25
 
-MerryCubeCreator.prototype.createSquare = function (x, z, shape) {
+MerryShapeCreator.prototype.createShape = function (x, z, shape) {
   if (shape === 'square') {
     return this._createCube(new THREE.BoxGeometry(0.25, 0.25, 0.25), x, z)
   } else if (shape === 'rectangle') {
@@ -17,7 +17,7 @@ MerryCubeCreator.prototype.createSquare = function (x, z, shape) {
   }
 }
 
-MerryCubeCreator.prototype._createCube = function (geometry, x, z) {
+MerryShapeCreator.prototype._createCube = function (geometry, x, z) {
   var material = this.merryColors.INACTIVE_COLOR
   var mesh = new THREE.Mesh(geometry, material)
 
