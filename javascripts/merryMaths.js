@@ -1,6 +1,6 @@
 function MerryMaths () {}
 
-MerryMaths.prototype.getPositionsAroundCircle = function (numberOfPositions, width) {
+MerryMaths.prototype.getPositionsAroundCircle = function (numberOfPositions, radius) {
   var circle = Math.PI * 2
 
   var everyXDegrees = circle / numberOfPositions
@@ -9,8 +9,8 @@ MerryMaths.prototype.getPositionsAroundCircle = function (numberOfPositions, wid
   for (var i = 0; i < numberOfPositions; i++) {
     var currentDegrees = i * everyXDegrees
 
-    var x = Math.cos(currentDegrees) * width
-    var z = Math.sin(currentDegrees) * width
+    var x = Math.cos(currentDegrees) * radius
+    var z = Math.sin(currentDegrees) * radius
 
     result.push([x, z])
   }

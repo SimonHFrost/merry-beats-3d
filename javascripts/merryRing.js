@@ -26,7 +26,7 @@ MerryRing.prototype._playSound = function () {
 
 MerryRing.prototype.initialize = function () {
   this.cubes = []
-  var positions = this.merryMaths.getPositionsAroundCircle(this.ringConfig.numberOfPositions, this.ringConfig.width)
+  var positions = this.merryMaths.getPositionsAroundCircle(this.ringConfig.numberOfPositions, this.ringConfig.radius)
   var currentPosition = 0
   var everyX = this._doSomething()
   for (var i = 0; i < this.totalHalfBeats; i++) {
