@@ -39,7 +39,6 @@ App.prototype._prepareRingConfig = function () {
   ]
 }
 
-// FIXME: Reduce params
 App.prototype._createRingsFromConfig = function (merryColors, merryMaths, merryCubeCreator, allRingConfig) {
   var me = this
   var rings = []

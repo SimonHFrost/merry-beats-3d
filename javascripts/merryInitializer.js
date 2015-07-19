@@ -9,7 +9,23 @@ function MerryInitializer (merryColors) {
 MerryInitializer.prototype.SCREEN_HEIGHT = 600
 MerryInitializer.prototype.SCREEN_WIDTH = 800
 
-MerryInitializer.prototype.createRenderer = function createRenderer () {
+MerryInitializer.prototype.initialize = function () {
+  var renderer = this._createRenderer()
+  var renderLoop = this._createRenderLoop()
+  var camera = this._createCamera(renderer)
+  var scene = this._createScene()
+
+  renderLoop.push(function () {
+    renderer.render(scene, camera)
+  })
+
+  return {
+    camera: camera,
+    scene: scene
+  }
+}
+
+MerryInitializer.prototype._createRenderer = function () {
   var renderer = new THREE.WebGLRenderer({
     antialias: true
   })
@@ -19,17 +35,7 @@ MerryInitializer.prototype.createRenderer = function createRenderer () {
   return renderer
 }
 
-MerryInitializer.prototype.createCamera = function createCamera (renderer) {
-  var camera = new THREE.PerspectiveCamera(90, this.SCREEN_WIDTH / this.SCREEN_HEIGHT, 0.01, 1000)
-  camera.position.y = 12
-  var controls = new THREE.OrbitControls(camera, document.getElementById('renderer'))
-  controls.noZoom = true
-  controls.noPan = true
-  controls.maxPolarAngle = Math.PI / 2.2
-  return camera
-}
-
-MerryInitializer.prototype.createRenderLoop = function createRenderLoop () {
+MerryInitializer.prototype._createRenderLoop = function () {
   var renderLoop = []
   var before = null
   requestAnimationFrame(function animate (now) {
@@ -44,7 +50,19 @@ MerryInitializer.prototype.createRenderLoop = function createRenderLoop () {
   return renderLoop
 }
 
-MerryInitializer.prototype.createLights = function createLights (scene) {
+MerryInitializer.prototype._createCamera = function (renderer) {
+  var camera = new THREE.PerspectiveCamera(90, this.SCREEN_WIDTH / this.SCREEN_HEIGHT, 0.01, 1000)
+  camera.position.y = 12
+  var controls = new THREE.OrbitControls(camera, document.getElementById('renderer'))
+  controls.noZoom = true
+  controls.noPan = true
+  controls.maxPolarAngle = Math.PI / 2.2
+  return camera
+}
+
+MerryInitializer.prototype._createScene = function () {
+  var scene = new THREE.Scene()
+
   var ambientLight = new THREE.AmbientLight(0xAAAAAA)
   scene.add(ambientLight)
 
@@ -53,23 +71,4 @@ MerryInitializer.prototype.createLights = function createLights (scene) {
   scene.add(directionalLight)
 
   return scene
-}
-
-MerryInitializer.prototype.initialize = function initialize () {
-  var renderer = this.createRenderer({alpha: true})
-  var renderLoop = this.createRenderLoop()
-
-  var scene = new THREE.Scene()
-  var camera = this.createCamera(renderer)
-
-  renderLoop.push(function () {
-    renderer.render(scene, camera)
-  })
-
-  scene = this.createLights(scene)
-
-  return {
-    camera: camera,
-    scene: scene
-  }
 }
