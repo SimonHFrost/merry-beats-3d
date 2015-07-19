@@ -30,20 +30,21 @@ MerryCubeCreator.prototype.createCube = function (createFunction, x, z, rotation
 }
 
 // FIXME: Reduce params
-MerryCubeCreator.prototype.createRingOfCubes = function (totalHalfBeats, numberOfPositions, width, soundName, createFunction, rotation) {
+MerryCubeCreator.prototype.createRingOfCubes = function (totalHalfBeats, ringConfig) {
   var me = this
+
   // FIXME: Don't use object here
   return {
     cubes: (function makeCubes () {
       var cubes = []
       var merryMaths = new MerryMaths()
-      var positions = merryMaths.getPositionsAroundCircle(numberOfPositions, width)
+      var positions = merryMaths.getPositionsAroundCircle(ringConfig.numberOfPositions, ringConfig.width)
       var currentPosition = 0
-      var everyX = Math.floor(totalHalfBeats / numberOfPositions)
+      var everyX = Math.floor(totalHalfBeats / ringConfig.numberOfPositions)
       for (var i = 0; i < totalHalfBeats; i++) {
         var position = positions[currentPosition]
         if (i % everyX === 0) {
-          cubes[i] = me.createCube(createFunction, position[0], position[1], rotation)
+          cubes[i] = me.createCube(ringConfig.createFunction, position[0], position[1], ringConfig.rotation)
           currentPosition++
         }
       }
@@ -52,6 +53,6 @@ MerryCubeCreator.prototype.createRingOfCubes = function (totalHalfBeats, numberO
     isThereSomethingAtPosition: function isThereSomethingAtPosition (position) {
       return this.cubes[position]
     },
-    sound: new Audio('sounds/' + soundName + '.wav')
+    sound: new Audio('sounds/' + ringConfig.soundName + '.wav')
   }
 }

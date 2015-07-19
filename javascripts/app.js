@@ -59,11 +59,8 @@ App.prototype._createRingsFromConfig = function (scene, merryColors, ringConfig)
     rings.push(
       merryCubeCreator.createRingOfCubes(
         me.TOTAL_HALF_BEATS,
-        ringConfig.numberOfPositions,
-        ringConfig.width,
-        ringConfig.soundName,
-        ringConfig.createFunction,
-        ringConfig.rotation)
+        ringConfig
+      )
     )
   })
   return rings
