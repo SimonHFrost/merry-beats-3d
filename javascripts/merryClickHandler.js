@@ -8,15 +8,13 @@ function MerryClickHandler (scene, camera, merryInitializer, merryColors) {
 
   // NOTE: .bind(this) passes the prototype context to target function
   window.addEventListener('click', this.onClick.bind(this))
-  document.getElementById('new-color').addEventListener('click', function () {
-    merryColors.initialize()
-  })
+  document.getElementById('new-color').addEventListener('click', this.newColor.bind(this))
 }
 
 MerryClickHandler.prototype.SCENE = ''
 MerryClickHandler.prototype.CAMERA = ''
 
-MerryClickHandler.prototype.onClick = function onClick (e) {
+MerryClickHandler.prototype.onClick = function (e) {
   var x = (e.clientX / this.merryInitializer.SCREEN_WIDTH) * 2 - 1
   var y = -(e.clientY / this.merryInitializer.SCREEN_HEIGHT) * 2 + 1
   var mouse = new THREE.Vector2(x, y)
@@ -33,4 +31,8 @@ MerryClickHandler.prototype.onClick = function onClick (e) {
       cube.playClip = true
     }
   }
+}
+
+MerryClickHandler.prototype.newColor = function (e) {
+  this.merryColors.initialize()
 }
