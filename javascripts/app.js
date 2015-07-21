@@ -24,9 +24,9 @@ App.prototype.start = function () {
   var allRingConfig = this._prepareRingConfig()
   var rings = this._createRingsFromConfig(merryColors, merryMaths, merryShapeCreator, allRingConfig)
 
-  var merryScheduler = new MerryScheduler(merryColors, this.TOTAL_HALF_BEATS)
+  var merryScheduler = new MerryScheduler(merryColors, this.TOTAL_HALF_BEATS, rings)
   merryScheduler.watchCollection(rings)
-  var merryClickHandler = new MerryClickHandler(scene, camera, merryInitializer, merryColors)
+  var merryClickHandler = new MerryClickHandler(scene, camera, merryInitializer, merryColors, merryScheduler)
 }
 
 App.prototype._prepareRingConfig = function () {

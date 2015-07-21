@@ -1,14 +1,16 @@
 var THREE = window.THREE
 
-function MerryClickHandler (scene, camera, merryInitializer, merryColors) {
+function MerryClickHandler (scene, camera, merryInitializer, merryColors, merryScheduler) {
   this.SCENE = scene
   this.CAMERA = camera
   this.merryInitializer = merryInitializer
   this.merryColors = merryColors
+  this.merryScheduler = merryScheduler
 
   // NOTE: .bind(this) passes the prototype context to target function
   window.addEventListener('click', this.onClick.bind(this))
   document.getElementById('new-color').addEventListener('click', this.newColor.bind(this))
+  document.getElementById('reset').addEventListener('click', this.reset.bind(this))
 }
 
 MerryClickHandler.prototype.SCENE = ''
@@ -24,6 +26,7 @@ MerryClickHandler.prototype.onClick = function (e) {
   for (var i = 0; i < intersects.length; i++) {
     var cube = intersects[i].object
     if (cube.playClip) {
+      // FIXME: Make this DRY
       cube.material = this.merryColors.INACTIVE_COLOR
       cube.playClip = false
     } else {
@@ -35,4 +38,8 @@ MerryClickHandler.prototype.onClick = function (e) {
 
 MerryClickHandler.prototype.newColor = function (e) {
   this.merryColors.initialize()
+}
+
+MerryClickHandler.prototype.reset = function (e) {
+  this.merryScheduler.resetAllCubes()
 }
