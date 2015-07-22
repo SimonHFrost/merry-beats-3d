@@ -5,6 +5,7 @@ function MerryScheduler (merryColors, totalHalfBeats, rings) {
 }
 
 MerryScheduler.prototype.STEP_DURATION = 100
+MerryScheduler.prototype.intervalId = ''
 
 MerryScheduler.prototype.resetAllCubes = function () {
   var me = this
@@ -18,12 +19,23 @@ MerryScheduler.prototype.resetAllCubes = function () {
   })
 }
 
-// FIXME: use rings from constructor
-MerryScheduler.prototype.watchCollection = function (rings) {
+MerryScheduler.prototype.toggleScheduling = function () {
+  if (this.intervalId) {
+    window.clearInterval(this.intervalId)
+    this.intervalId = ''
+    document.getElementById('pause').innerHTML = 'Resume'
+  } else {
+    this.intervalId = this._watchCollection()
+    document.getElementById('pause').innerHTML = 'Pause'
+  }
+}
+
+// FIXME: rename function
+MerryScheduler.prototype._watchCollection = function () {
   var me = this
   var count = 0
-  setInterval(function () {
-    me._checkAllRings(rings, count++ % me.totalHalfBeats)
+  return setInterval(function () {
+    me._checkAllRings(me.rings, count++ % me.totalHalfBeats)
   }, me.STEP_DURATION)
 }
 
@@ -32,3 +44,4 @@ MerryScheduler.prototype._checkAllRings = function (rings, index) {
     ring.toggleAtIndex(index)
   })
 }
+

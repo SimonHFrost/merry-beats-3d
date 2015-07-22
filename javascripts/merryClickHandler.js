@@ -11,10 +11,12 @@ function MerryClickHandler (scene, camera, merryInitializer, merryColors, merryS
   window.addEventListener('click', this.onClick.bind(this))
   document.getElementById('new-color').addEventListener('click', this.newColor.bind(this))
   document.getElementById('reset').addEventListener('click', this.reset.bind(this))
+  document.getElementById('pause').addEventListener('click', this.pause.bind(this))
 }
 
 MerryClickHandler.prototype.SCENE = ''
 MerryClickHandler.prototype.CAMERA = ''
+MerryClickHandler.prototype.paused = false
 
 MerryClickHandler.prototype.onClick = function (e) {
   var x = (e.clientX / this.merryInitializer.SCREEN_WIDTH) * 2 - 1
@@ -36,10 +38,14 @@ MerryClickHandler.prototype.onClick = function (e) {
   }
 }
 
-MerryClickHandler.prototype.newColor = function (e) {
+MerryClickHandler.prototype.newColor = function () {
   this.merryColors.initialize()
 }
 
-MerryClickHandler.prototype.reset = function (e) {
+MerryClickHandler.prototype.reset = function () {
   this.merryScheduler.resetAllCubes()
+}
+
+MerryClickHandler.prototype.pause = function () {
+  this.merryScheduler.toggleScheduling()
 }
