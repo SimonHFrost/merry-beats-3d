@@ -1,4 +1,3 @@
-var Audio = window.Audio
 var MerryMaths = window.MerryMaths
 
 function MerryRing (merryShapeCreator, merryColors, totalHalfBeats, ringConfig) {
@@ -21,7 +20,7 @@ MerryRing.prototype.toggleAtIndex = function (index) {
 
   var previousMaterial = this.cubes[index].material
   if (this.cubes[index].playClip) {
-    this._playSound()
+    this.cubes[index].sound.play()
   }
 
   this.cubes[index].material = this.merryColors.ACTIVE_COLOR
@@ -40,13 +39,10 @@ MerryRing.prototype._initialize = function () {
   for (var i = 0; i < this.totalHalfBeats; i++) {
     var position = positions[currentPosition]
     if (i % everyX === 0) {
-      this.cubes[i] = this.merryShapeCreator.createShape(position[0], position[1], this.ringConfig.shape)
+      this.cubes[i] = this.merryShapeCreator.createShape(position[0], position[1], this.ringConfig)
       currentPosition++
     }
   }
-
-  // FIXME: Use html5 audio source?
-  this.sound = new Audio('sounds/' + this.ringConfig.soundName + '.wav')
 }
 
 MerryRing.prototype._isThereCubeOnBeat = function (index) {
@@ -55,8 +51,4 @@ MerryRing.prototype._isThereCubeOnBeat = function (index) {
 
 MerryRing.prototype._beatInterval = function () {
   return Math.floor(this.totalHalfBeats / this.ringConfig.numberOfPositions)
-}
-
-MerryRing.prototype._playSound = function () {
-  this.sound.play()
 }
