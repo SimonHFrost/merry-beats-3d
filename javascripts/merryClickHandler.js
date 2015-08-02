@@ -1,8 +1,9 @@
 var THREE = window.THREE
 
-function MerryClickHandler (scene, camera, merryInitializer, merryColors, merryScheduler) {
+function MerryClickHandler (scene, camera, renderer, merryInitializer, merryColors, merryScheduler) {
   this.SCENE = scene
   this.CAMERA = camera
+  this.RENDERER = renderer
   this.merryInitializer = merryInitializer
   this.merryColors = merryColors
   this.merryScheduler = merryScheduler
@@ -40,6 +41,8 @@ MerryClickHandler.prototype.onClick = function (e) {
 
 MerryClickHandler.prototype.newColor = function () {
   this.merryColors.initialize()
+  this.merryInitializer.setBackgroundColor(this.RENDERER, this.merryColors)
+  this.merryScheduler.resetColors()
 }
 
 MerryClickHandler.prototype.reset = function () {

@@ -18,6 +18,7 @@ App.prototype.start = function () {
   var output = merryInitializer.initialize()
   var scene = output.scene
   var camera = output.camera
+  var renderer = output.renderer
 
   var merryShapeCreator = new MerryShapeCreator(scene, merryColors)
 
@@ -26,7 +27,7 @@ App.prototype.start = function () {
 
   var merryScheduler = new MerryScheduler(merryColors, this.TOTAL_HALF_BEATS, rings)
   merryScheduler.toggleScheduling()
-  var merryClickHandler = new MerryClickHandler(scene, camera, merryInitializer, merryColors, merryScheduler)
+  var merryClickHandler = new MerryClickHandler(scene, camera, renderer, merryInitializer, merryColors, merryScheduler)
 }
 
 App.prototype._prepareRingConfig = function () {

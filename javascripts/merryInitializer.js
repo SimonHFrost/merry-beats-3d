@@ -11,6 +11,7 @@ MerryInitializer.prototype.SCREEN_WIDTH = 800
 
 MerryInitializer.prototype.initialize = function () {
   var renderer = this._createRenderer()
+  this.setBackgroundColor(renderer, this.merryColors)
   var renderLoop = this._createRenderLoop()
   var camera = this._createCamera(renderer)
   var scene = this._createScene()
@@ -21,15 +22,19 @@ MerryInitializer.prototype.initialize = function () {
 
   return {
     camera: camera,
-    scene: scene
+    scene: scene,
+    renderer: renderer
   }
+}
+
+MerryInitializer.prototype.setBackgroundColor = function (renderer, merryColors) {
+  renderer.setClearColor(this.merryColors.secondaryColor)
 }
 
 MerryInitializer.prototype._createRenderer = function () {
   var renderer = new THREE.WebGLRenderer({
     antialias: true
   })
-  renderer.setClearColor(this.merryColors.secondaryColor)
   renderer.setSize(this.SCREEN_WIDTH, this.SCREEN_HEIGHT)
   document.getElementById('renderer').appendChild(renderer.domElement)
   return renderer
